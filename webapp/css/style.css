@@ -1,0 +1,1381 @@
+.tileLayout {
+  float: left;
+}
+
+.logo {
+  height: 50px;
+  /* background-color: blue; */
+}
+
+.customToolbar {
+  background-color: #2c09f3;
+  /* Change this to your desired color */
+  color: white;
+}
+
+.customTitle {
+  font-size: 44px;
+  /* Set the font size */
+  font-weight: bold;
+  /* Set the font weight */
+  color: #007AFF;
+  /* Set the font color */
+  text-align: center;
+  /* Center align the text */
+  margin: 10px 0;
+  /* Add some margin */
+}
+
+.companyHeading {
+  font-size: 25px !important;
+  /* Set the font size */
+  font-weight: bold;
+  /* Set the font weight */
+}
+
+.portalHeading.sapMTitle {
+  font-size: 30px !important;
+  /* Set the font size */
+  font-weight: bold;
+  /* Set the font weight */
+  color: orange !important;
+}
+
+.scmHeading {
+  font-size: 20px !important;
+  /* Set the font size */
+  font-weight: bold;
+  /* Set the font weight */
+}
+
+.hoveredTile {
+  background-color: #170679;
+}
+
+.customTile .sapMGTHdrTxt>.sapMText {
+  color: white !important;
+  font-weight: bold;
+}
+
+.customTile .sapMGTSubHdrTxt>.sapMText {
+  color: whitesmoke !important;
+  /* Change this to your desired color */
+}
+
+.sapMITBTextOnly .sapMITBFilterDefault .sapMITBText {
+  color: white !important;
+  font-size: 15px;
+  width: fit-content;
+  border: #170679;
+  white-space: pre-line;
+  border-bottom: none !important;
+
+}
+
+.sapMTitle {
+  color: #170679 !important;
+  font-size: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.sapMITH {
+  background-color: #170679;
+}
+
+.sapMITH .sapMITHEndOverflow .sapMITBText {
+  color: #170679 !important;
+}
+
+.sapMTB {
+  background-color: #170679;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* Ensure the toolbar is above other content */
+}
+
+html.sap-desktop .sapMIBar.sapMFooter-CTX {
+  background-color: #170679;
+  color: white;
+}
+
+.sapMListTbl .sapMColumnHeader {
+  position: sticky;
+}
+
+.sapMListTbl .sapMColumnHeader .sapMLabel {
+  font-weight: bolder;
+
+}
+
+.sapMTableTH {
+  background-color: #170679;
+}
+
+.sapMListTbl .sapMColumnHeader .sapMLabel {
+  color: white !important;
+  /* For Table Heading color */
+}
+
+.sapMListTbl .sapMColumnHeader .sapMText {
+  color: white !important;
+  /* For Table Heading color */
+}
+
+span.sapMBtnInner.sapMBtnAccept {
+  color: #170679;
+}
+
+myTableWithBackground {
+  background-image: url("/images/Sundram_03.jpg") !important;
+  background-color: #c2bde2 !important;
+  background-size: cover;
+}
+
+.sapMListItems.sapMTableBody {
+  background-image: url("/images/Sundram_03.jpg") !important;
+  background-color: antiquewhite !important;
+}
+
+.subTitle {
+  font-size: 1rem;
+  /* Adjust the font size for the subtitle */
+  color: #170679;
+  /* Optional: Adjust the subtitle color */
+  margin-top: -10px;
+  /* Adjust the spacing between title and subtitle */
+}
+
+/* .sapMFlexBoxBGTransparent {
+  background-image: url("/images/Sundram_03.jpg");
+} */
+.boldtext {
+  font-weight: bold;
+}
+
+.smallfont {
+  font-size: smaller;
+}
+
+.carouselText {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  /* Adjust this value to position the text vertically */
+  left: 20px;
+  /* Adjust this value to position the text horizontally */
+  width: 100%;
+  animation: fadeIn 2s ease-in-out;
+  padding: 10px;
+  /* Optional: Add padding around the text */
+}
+
+Customcarousel1.carouselText {
+  color: rgb(245, 8, 8);
+  font-size: 24px;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.typewriter {
+  overflow: hidden;
+  font-size: x-large;
+  align-self: center;
+  border-right: 0.15em solid #333;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  animation:
+    typewriter 4s steps(44) 1s 1 normal both,
+    blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.sapMCrslItem {
+  position: relative;
+}
+
+.sapMCrsl>.sapMCrslItem>img {
+  transition: transform 1s ease;
+}
+
+.sapMCrsl>.sapMCrslItem>img:hover {
+  transform: scale(1.1);
+  /* Zoom effect on hover */
+}
+
+.paragraphText {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 100%;
+  /* Adjust the width as per your layout */
+  padding: 10px 20px;
+}
+
+.paragraphTextOrg {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 100%;
+  /* Adjust the width as per your layout */
+}
+
+.paragraphTextHeading {
+  font-size: 25px;
+  line-height: 1.8;
+  max-width: 100%;
+  /* Adjust the width as per your layout */
+  font-weight: bold;
+  font-family: serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.paragraphTextStyle {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 100%;
+  /* Adjust the width as per your layout */
+  background-size: cover;
+  /* color: black; */
+  /* font-weight: bold; */
+  padding: 10px;
+  /* background: linear-gradient(135deg,#170679, white); */
+  /* background: linear-gradient(135deg, #f06, #4a90e2); */
+  /* border-radius: 10px;
+  border: 2px solid orange;   */
+}
+
+.newsTickerBox {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background-color: #170679;
+  border: 1px solid #ccc;
+  height: 40px;
+  /* Adjust the height as needed */
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.newsText {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollLeft 20s linear infinite;
+  font-size: 16px;
+  color: White;
+  white-space: nowrap;
+  animation-play-state: running;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.pulsatingButton {
+  animation: pulsate 1.5s infinite;
+  color: white;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.rotatingIcon {
+  animation: rotate 3s linear infinite;
+  font-size: 32px;
+  color: #007bff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.flashingButton {
+  animation: flashingButton 1.5s infinite;
+  /* Adjust timing as needed */
+  background-color: #007bff;
+  /* Starting color */
+  color: white;
+}
+
+@keyframes flashingButton {
+  0% {
+    background-color: #007bff;
+  }
+
+  50% {
+    background-color: #ff0000;
+  }
+
+  /* Change to another color */
+  100% {
+    background-color: #007bff;
+  }
+}
+
+.blinkingText {
+  animation: blinking 1s infinite;
+  /* Adjust timing as needed */
+  font-size: 24px;
+  color: #007bff;
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.createbuttonstyle {
+  border-radius: 15px;
+  /* Adjust the radius to make borders more or less rounded */
+  padding: 0.5rem 1rem;
+  /* Adjust padding as needed */
+  border: 2px solid rgb(253, 174, 4);
+  /* Border color and width */
+  background-color: rgb(253, 174, 4);
+  color: #170679;
+  /* Text color */
+  font-size: 16px;
+  /* Font size */
+  font-weight: bold;
+  /* Font weight */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.sapMBtn.sapMBtnIcon {
+  background-image: none !important;
+}
+
+.myBackgroundImage {
+  background-image: url('/images/Sundram_03.jpg');
+  /* Specify the path to your image */
+  background-size: cover;
+  /* Make sure the image covers the entire form */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Avoid repeating the image */
+  padding: 20px;
+  /* Optional: Add padding to avoid content touching the edges */
+  opacity: 1.0;
+}
+
+.sapMTB.sapMTBStandard {
+  position: sticky;
+  top: 0;
+}
+
+.banner {
+  background-color: #170679;
+  /* Banner background color */
+  padding: 10px;
+  /* Add padding to the banner */
+  border-radius: 5px;
+  /* Optional: Rounded corners */
+  color: white;
+  /* Text color */
+}
+
+.bannerText {
+  font-size: 1.5rem;
+  /* Increase text size */
+  font-weight: bold;
+  /* Bold text */
+  color: white;
+  /* Ensure text is visible */
+}
+
+.zoomOutImage {
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoomOutImage:hover {
+  transform: scale(1.2);
+  /* Adjust the scale as needed */
+  color: orange !important;
+}
+
+.sapMITBTextOnly .sapMITBFilterDefault .sapMITBText:hover {
+  color: orange !important;
+}
+
+.iconTabFilterHover:hover {
+  transform: scale(1.1);
+  /* Adjust the scale as needed */
+  transition: transform 0.3s ease-in-out;
+  /* Smooth zoom transition */
+}
+
+.companyLogo {
+  height: 50px;
+  /* Set a specific height in pixels */
+  width: auto;
+  /* Maintain aspect ratio */
+  max-width: 100%;
+  /* Ensure the image does not exceed the width of its container */
+}
+
+/* Custom CSS for carousel sliding effect */
+.sapMCrsl .sapMCrslInner {
+  display: flex;
+  transition: transform 1s ease;
+  /* Smooth transition for sliding */
+}
+
+.sapMCrslItem {
+  flex: 0 0 100%;
+  /* Each item takes full width */
+  overflow: hidden;
+  position: sticky;
+  /* For absolute positioning of images */
+  top: 10px;
+}
+
+.sapMCrslItem>img {
+  width: 100%;
+  height: auto;
+  /* Make sure images are responsive */
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.sapMCrslItem:hover>img {
+  transform: scale(1.05);
+  /* Zoom effect on hover */
+}
+
+/* Adding a fade-in effect to each slide */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Adjust carousel height for different screen sizes */
+@media screen and (max-width: 600px) {
+  #idImageSlider {
+    height: 200px;
+    /* Smaller height for mobile devices */
+  }
+}
+
+.sapMCrslItemImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center
+}
+
+.sapMCrslItemImageWidth {
+  object-fit: cover;
+  object-position: center
+}
+
+.carouselImage {
+  width: 100%;
+  /* Make the image take up the full width */
+  height: 100%;
+  /* Make the image take up the full height */
+  object-fit: contain;
+  /* Ensures the entire image is visible without distortion */
+  display: block;
+  /* Removes any extra spacing around the image */
+}
+
+.animate-charcter {
+  background-image: linear-gradient(-225deg,
+      #231557 0%,
+      #44107a 29%,
+      #ff1361 67%,
+      #fff800 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 4s linear infinite;
+  display: inline-block;
+}
+
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+
+.title-word-2 {
+  --color-1: #DBAD4A;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+.title-word-3 {
+  --color-1: #ACCFCB;
+  --color-2: #E4A9A8;
+  --color-3: #ACCFCB;
+}
+
+.title-word-4 {
+  --color-1: #3D8DAE;
+  --color-2: #DF8453;
+  --color-3: #E4A9A8;
+}
+
+@keyframes color-animation {
+  0% {
+    color: var(--color-1)
+  }
+
+  32% {
+    color: var(--color-1)
+  }
+
+  33% {
+    color: var(--color-2)
+  }
+
+  65% {
+    color: var(--color-2)
+  }
+
+  66% {
+    color: var(--color-3)
+  }
+
+  99% {
+    color: var(--color-3)
+  }
+
+  100% {
+    color: var(--color-1)
+  }
+}
+
+/* Here are just some visual styles. 🖌 */
+
+.container {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  height: 100vh
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.waviy {
+  position: relative;
+}
+
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  animation: flip 2s infinite;
+  animation-delay: calc(.2s * var(--i))
+}
+
+@keyframes flip {
+
+  0%,
+  80% {
+    transform: rotateY(360deg)
+  }
+}
+
+/* flipping class and key frames*/
+.flipX {
+  animation: 1s anim-flipX ease infinite;
+}
+
+@keyframes anim-flipX {
+  0% {
+    opacity: 0;
+    transform: rotateX(90def);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotateX(720deg);
+  }
+
+  100% {
+    /* animate nothing to pause animation at the end */
+    opacity: 1;
+    transform: rotateX(720deg);
+  }
+}
+
+/* lineup class and keyframes */
+.lineUp {
+  animation: 2s anim-lineUp ease-out infinite;
+}
+
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+/* flipY class and keyframes*/
+.flipY {
+  animation-name: spin, depth;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(-360deg);
+  }
+}
+
+@keyframes depth {
+  0% {
+    text-shadow: 0 0 black;
+  }
+
+  25% {
+    text-shadow: 1px 0 black, 2px 0 black, 3px 0 black, 4px 0 black, 5px 0 black;
+  }
+
+  50% {
+    text-shadow: 0 0 black;
+  }
+
+  75% {
+    text-shadow: -1px 0 black, -2px 0 black, -3px 0 black, -4px 0 black,
+      -5px 0 black;
+  }
+
+  100% {
+    text-shadow: 0 0 black;
+  }
+}
+
+/* subtle zoom to attention and then back */
+.pop-outin {
+  animation: 2s anim-popoutin ease infinite;
+}
+
+@keyframes anim-popoutin {
+  0% {
+    color: black;
+    transform: scale(0);
+    opacity: 0;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  25% {
+    color: red;
+    transform: scale(2);
+    opacity: 1;
+    text-shadow: 3px 10px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  50% {
+    color: black;
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    /* animate nothing to add pause at the end of animation */
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.fromtop {
+  animation: 2s anim-fromtop linear infinite;
+}
+
+@keyframes anim-fromtop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  50% {}
+
+  100% {}
+}
+
+.unauthText {
+  font-size: 24px;
+  /* Adjust the font size as needed */
+  font-weight: bold;
+  /* Makes the font bold */
+  text-align: center;
+  /* Center-aligns the text */
+}
+
+.customTableHeader th {
+  /* Dark blue background */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.customTitleColor {
+  color: #170679;
+  /* Change this to your desired color */
+}
+
+.title1 {
+  font-size: 15px;
+  /* Adjust the font size as needed */
+  /*border-left: 4px; /* Left border */
+  padding-left: 10px;
+  /* Gap between the border and the text */
+  text-transform: none;
+  background: none;
+}
+
+.centeredFragment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Full height of the viewport */
+  width: 100%;
+}
+
+.retailPortalTitle {
+  font-weight: bold;
+  font-size: 1.5rem;
+  /* Adjust as needed */
+  color: #0a6ed1;
+  /* Theme color for Retail Portal */
+  text-transform: uppercase;
+  /* Makes the text uppercase */
+}
+
+.customLink {
+  font-size: 16px;
+  font-weight: bold;
+  color: #0070f3;
+  /* Link color */
+  text-decoration: underline;
+  margin: 0 10px;
+  /* Add spacing between links */
+  cursor: pointer;
+}
+
+.customLink:hover {
+  color: #0056b3;
+  /* Hover color */
+}
+
+.backgroundPage {
+  background-color: #000080;
+  background-size: cover;
+  /* Ensures the image covers the entire page */
+  background-position: center;
+  /* Centers the image */
+  background-repeat: no-repeat;
+  /* Prevents repeating the image */
+  height: 100%;
+  /* Ensures the background fills the page */
+  width: 100%;
+  /* Ensures the background fills the page */
+}
+
+.tileContainer {
+  border-radius: 10px;
+  /* Optional: Gives rounded corners */
+  padding: 20px;
+  /* Optional: Adds padding around tiles */
+}
+
+.vibrantText {
+  font-size: 24px;
+  /* Adjust size as needed */
+  font-weight: bold;
+  color: #000080;
+  /* Vibrant orange */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Subtle shadow effect */
+  margin-top: 10px;
+}
+
+.vibrantBackground {
+  background: linear-gradient(90deg, #e6dec8, #000080);
+  /* Vibrant gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.fadeInText {
+  animation: fadeIn 5s forwards;
+  opacity: 0;
+  /* Start with text hidden */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Style for Section Titles */
+.sectionTitle {
+  font-size: 22px;
+  font-weight: bolder;
+  color: #000080;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Style for Section Descriptions */
+.sectionDescription {
+  font-size: 16px;
+  color: #000080;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* Style for Product Grid */
+.productGrid {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Style for Product Items */
+.productItem {
+  font-size: 18px;
+  color: #000080;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.productContainer {
+  background-image: url("/images/Black-Nut.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: auto;
+}
+
+.productContainer1 {
+  background-image: url("/images/Bolt.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.productContainer2 {
+  background-image: url("/images/DJI_0228.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.productContainer3 {
+  background-image: url("/images/DSC03285.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: "100%";
+  height: "100%";
+}
+
+.productContainer4 {
+  background-image: url("/images/IMG_0398.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+
+.productContainer5 {
+  background-image: url("/images/IMG_3883.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: "100%";
+  height: "100%";
+}
+
+
+.productContainer6 {
+  background-image: url("/images/IMG_5213.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  content: normal;
+}
+
+
+.productContainer7 {
+  background-image: url("/images/powder_met.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.productContainer1 .sectionTitle,
+.productContainer1 .sectionDescription,
+.productContainer1 .productItem {
+  display: none;
+}
+
+.productContainer2 .sectionTitle,
+.productContainer2 .sectionDescription,
+.productContainer2 .productItem {
+  display: none;
+}
+
+.productContainer3 .sectionTitle,
+.productContainer3 .sectionDescription,
+.productContainer3 .productItem {
+  display: none;
+}
+
+.productContainer4 .sectionTitle,
+.productContainer4 .sectionDescription,
+.productContainer4 .productItem {
+  display: none;
+}
+
+.productContainer5 .sectionTitle,
+.productContainer5 .sectionDescription,
+.productContainer5 .productItem {
+  display: none;
+}
+
+.productContainer6 .sectionTitle,
+.productContainer6 .sectionDescription,
+.productContainer6 .productItem {
+  display: none;
+}
+
+.productContainer7 .sectionTitle,
+.productContainer7 .sectionDescription,
+.productContainer7 .productItem {
+  display: none;
+}
+
+.sapMGT {
+  width: 8rem;
+  height: 8rem;
+}
+
+.divisionFlexBox {
+  background-color: #f5f5f5;
+  /* Light gray background for a clean look */
+  border: 1px solid #ddd;
+  /* Subtle border */
+  border-radius: 10px;
+  /* Rounded corners */
+  padding: 15px;
+  /* Inner spacing */
+  margin: 10px;
+  /* Space between tiles */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Smooth animations */
+}
+
+.divisionFlexBox:hover {
+  transform: scale(1.05);
+  /* Slight zoom effect on hover */
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+  /* Enhanced shadow on hover */
+}
+
+.divisionFlexBox .sapUiIcon {
+  color: #007bff;
+  /* Custom color for icons */
+}
+
+.divisionFlexBox .sapMButton {
+  background-color: #007bff;
+  /* Custom button background */
+  color: #fff;
+  /* Button text color */
+  border-radius: 5px;
+  /* Rounded button corners */
+  margin-top: 10px;
+  /* Space between the button and other items */
+}
+
+.divisionFlexBox .sapMButton:hover {
+  background-color: #0056b3;
+  /* Darker shade on hover */
+}
+
+.myWelcomeBackground {
+  background-image: url("/images/SFL.png");
+  background-size: cover;
+  /* Ensures the image covers the entire page */
+  background-position: center;
+  /* Centers the image */
+  background-repeat: no-repeat;
+  /* Prevents the image from repeating */
+}
+
+.portalImage {
+  animation: fadeInOut 8s infinite;
+  /* Adjust timing for fade effect */
+  transition: opacity 2s ease-in-out;
+  /* Smooth transition */
+}
+
+@keyframes fadeInOut {
+
+  0%,
+  100% {
+    opacity: 0;
+    /* Fully transparent */
+  }
+
+  50% {
+    opacity: 1;
+    /* Fully visible */
+  }
+}
+
+.portalFadeINOut {
+  animation: fadeEffect 8s infinite;
+  /* Change the duration as needed */
+  transition: opacity 2s ease-in-out;
+  position: relative;  
+  /* Adjust if necessary */
+  margin: 0;
+  /* Ensure no extra space is added */
+  padding: 0;
+  /* Avoid unnecessary padding */
+}
+
+@keyframes fadeEffect {
+
+  0%,
+  100% {
+    opacity: 1;
+    /* 0 Fully transparent 0.5 partially transparent*/
+  }
+
+  50% {
+    opacity: 1;
+    /* Fully visible */
+  }
+}
+
+.salesToTradeBackground {
+  background-image: url("/images/Black-Nut.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.OrderUploadBackground {
+  background-image: url("/images/Bolt.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.orderAckBackground {
+  background-image: url("/images/DJI_0228.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.defaultBackground {
+  background-color: #f0f0f0;
+  /* Default fallback background */
+}
+.redLink {
+  color: red !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+}
+
+.redLink:hover {
+  text-decoration: underline !important;
+}
+.customGridTile {
+  height: 150px; /* Adjust the height as needed */
+  width: 100%; /* Ensure the tile takes full width */
+  color: white; /* Text color for better readability on images */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow for text visibility */
+  border-radius: 8px; /* Optional: rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+  overflow: hidden; /* Ensure content stays within bounds */
+}
+.customGridTile:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+.transparentTile {
+  background-color: rgba(255, 255, 255, 0.2); /* Adjust the alpha for transparency */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border for visibility */
+  box-shadow: none; /* Remove shadow if any */
+  color: white;   /* Adjust text color for better readability */   
+  margin: 8px; /* Add spacing around the tile */   
+}
+
+.transparentTile:hover {
+  transform: scale(1.05);
+   /* Slightly increase opacity on hover  background-color: rgba(255, 255, 255, 0.4); */
+  background-color: #000080 !important;
+  color: white !important;
+}
+.transparentTile .sapMGTHeader {
+  font-weight: bold !important;      /* Makes the text bold */
+  font-size: 24px !important;        /* Sets a larger font size */
+  text-align: center !important;     /* Centers the text horizontally */
+  width: 100%;            /* Ensures the text occupies the full width */
+  display: flex !important;
+  justify-content: center !important; /* Center the text inside the tile */
+  align-items: center !important;     /* Center the text vertically color: #000080 !important;   */  
+  color: white !important;
+  transition: color 0.2s ease;
+}
+.transparentTile .sapMGTHdrTxt{
+  font-weight: bold !important;      /* Makes the text bold */
+  font-size: 24px !important;        /* Sets a larger font size */
+  text-align: center !important;     /* Centers the text horizontally */
+  width: 100%;            /* Ensures the text occupies the full width */
+  display: flex !important;
+  justify-content: center !important; /* Center the text inside the tile */
+  align-items: center !important;     /* Center the text vertically color: #000080 !important; color: #000080 !important;     */  
+  color: white !important;   
+}
+.transparentTile:hover .sapMGTHdrTxt>.sapMText {
+  color: white !important; 
+  font-weight: normal;
+}
+.transparentTile .sapMGTHdrTxt>.sapMText {
+  color: #000080 !important;
+  font-weight: normal;
+  font-weight: bold !important;      /* Makes the text bold */
+  font-size: 24px !important;        /* Sets a larger font size */
+  text-align: center !important;     /* Centers the text horizontally */
+  width: 100%;            /* Ensures the text occupies the full width */
+  display: flex !important;
+  justify-content: center !important; /* Center the text inside the tile */
+  align-items: center !important;     /* Center the text vertically color: #000080 !important; color: #000080 !important;     */      
+}
+.raisedTileContainer {
+  margin-top: -50px; /* Adjust this value to raise the tiles */
+  position: relative;
+  top: -10px; /* Fine-tune the position */
+}
+.typingEffectText {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(40, end), blink 0.5s step-end infinite alternate;
+  border-right: 2px solid white; /* Simulate typing cursor */
+}
+
+/* Typing animation */
+@keyframes typing {
+  from {
+      width: 0;
+  }
+  to {
+      width: 100%;
+  }
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  from {
+      border-right-color: white;
+  }
+  to {
+      border-right-color: transparent;
+  }
+}
+.welcomeIcon {
+  color: #fff;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+/* Bounce animation for the icon */
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+.welcomeContainer {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom right, #007aff, #00c6ff); /* Gradient background */
+  overflow: hidden;
+  text-align: center;
+}
+
+.welcomeBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2; /* Dim the background image */
+  z-index: -1;
+}
+
+.welcomeText {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add text shadow for readability */
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Animation for text fade-in */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+.typingEffectText::after {
+  content: "|";
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+

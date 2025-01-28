@@ -1,0 +1,19 @@
+{
+    "ordUplVal":{
+        "Bukrs" : "",
+        "Spart" : "",
+        "Doctype" : "",
+        "Salesorg" : "",
+        "Distch" : "",
+        "Divn" : "",
+        "Soldto" : "",
+        "Shipto" : "",
+        "Poref" : "",
+        "Podate" : "",
+        "Partno" : "",
+        "Delyqty" : "",
+        "Bukrs" : "",
+        "Spart": ""                
+    },       
+    "demo": "Welcome to TVS Next !!"  
+}

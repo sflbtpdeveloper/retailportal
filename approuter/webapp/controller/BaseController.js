@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel"],function(e,t){"use strict";return e.extend("zretail_sfl.controller.BaseController",{getOwnerComponent:function(){return e.prototype.getOwnerComponent.apply(this,arguments)},reuseCode:function(){},onInit:function(){debugger;this.oRouter=this.getOwnerComponent().getRouter();var e=this.getOwnerComponent().getModel();sap.ui.getCore().setModel(e)}})});
+//# sourceMappingURL=BaseController.js.map

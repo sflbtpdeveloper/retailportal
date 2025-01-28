@@ -1,0 +1,6 @@
+{
+    "items": [
+    { "key": "item1", "text": "View circular" },
+    { "key": "item2", "text": "Upload/delete circular" }           
+]    
+}

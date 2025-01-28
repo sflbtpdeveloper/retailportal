@@ -1,0 +1,167 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
+    xmlns:l="sap.ui.layout"
+    controllerName="zretail_sfl.controller.welcome"
+>
+    <Page
+        id="_IDGenPage2"
+        showHeader="false"
+        showFooter="true"
+        backgroundDesign="Standard"
+        class="myWelcomeBackground"
+    >
+        <tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls">
+            <Image
+                id="_IDGenImage4"
+                src="/images/sfllogoonly.png"
+                width="2.5rem"
+                height="3.5rem"
+                decorative="false"
+                press="onLogoPressed"
+                tooltip="SAP Logo"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Image>
+            <Title
+                id="_IDGenTitle3"
+                text="SUNDRAM FASTENERS LIMITED"
+                wrapping="false"
+                class="companyHeading"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData1"
+                        priority="Disappear"
+                    />
+                </layoutData>
+            </Title>
+            <!-- Spacer to push the title to the center -->
+            <ToolbarSpacer />
+
+            <!-- Title with custom theme retailPortalTitle -->
+            <Title
+                id="_IDGenRetailPortalTitle"
+                text="RETAIL PORTAL"
+                wrapping="false"
+                level="H1"
+                textAlign="Center"
+                class="retailPortalTitle zoomOutImage"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutDataCenter"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Title>
+
+            <!-- Spacer to balance the layout -->
+            <ToolbarSpacer />
+
+            <ToolbarSpacer id="_IDGenToolbarSpacer" />
+            <HBox>
+                <Link
+                    text="About Us"
+                    press="onAboutUsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="News"
+                    press="onNewsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="Events"
+                    press="onEventsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="Contacts"
+                    press="onContactsPress"
+                    class="customLink"
+                />
+            </HBox>
+
+            <Avatar
+                id="_IDGenAvatar"
+                src="sap-icon://customer"
+                displaySize="XS"
+                press=".onAvatarPressed"
+                tooltip="Profile"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Avatar>
+            <Avatar
+                id="_IDLogOut"
+                src="sap-icon://log"
+                displaySize="XS"
+                press="onLogOut"
+                tooltip="Sign Out"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Avatar>
+        </tnt:ToolHeader>
+
+        <content>
+            <VBox
+                justifyContent="Center"
+                alignItems="Center"
+                height="60%"
+                width="100%"
+                class="tileContainer raisedTileContainer"                
+            >
+                <HBox
+                    justifyContent="Center"
+                    alignItems="Center"
+                >
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"                        
+                        frameType="TwoByHalf"
+                        press="onSFLPress"
+                        visible="{tileVisibilityModel>/showSflTile}"
+                        header="SFL - Sundram Fasteners Limited"
+                    >                      
+                    </GenericTile>
+
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"                        
+                        frameType="TwoByHalf"
+                        press="onTPLPress"
+                        visible="{tileVisibilityModel>/showTplTile}"
+                        header="TPL - TVS Sundram Fasteners Limited"
+                    >                      
+                    </GenericTile>
+                </HBox>
+                <!-- Spacer for 3-line height -->
+                <VBox
+                    height="1rem"
+                    width="100%"
+                />
+
+                <HBox
+                    id="tileContainer"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    width="100%"
+                    wrap="Wrap"
+                />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

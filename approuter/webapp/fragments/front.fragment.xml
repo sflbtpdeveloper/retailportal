@@ -1,0 +1,187 @@
+<core:FragmentDefinition
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+>
+    <!-- Main VBox for vertical stacking -->
+    <VBox
+        id="mainBox"
+        alignItems="Stretch"
+        justifyContent="Start"
+        height="100%"
+        width="100%"
+    >
+        <Carousel
+            id="idCars1"
+            height="100%"
+            loop="true"
+            showPageIndicator="false"
+        >
+            <VBox id="idWelcom">
+                <Image
+                    src="/images/SFL.png"
+                    width="100%"
+                    class="carouselImage"
+                />
+                <Text
+                    text="Welcome to our Retail Operations Portal"
+                    class="carouselText title"
+                />
+            </VBox>
+        </Carousel>
+
+        <HBox
+            alignItems="Center"
+            justifyContent="Center"
+        >
+            <VBox
+                class=" contentBox sapUiLargePadding "
+                justifyContent="Center"
+                alignItems="Center"
+                width="100%"
+            >
+                <Text
+                    id="idPara1"
+                    text="SFL designs and manufactures fasteners and related products, ensuring quality and customization for various industries (automotive, infrastructure, etc.)."
+                    class="paragraphText animate-charcter"
+                    textAlign="Center"
+                    wrapping="true"
+                    maxLines="4"
+                    wrappingType="Hyphenated"
+                />
+
+                <Text
+                    id="idPara2"
+                    text=" Rigorous checks and certifications to ensure product durability and adherence to global standards."
+                    class="paragraphText animate-charcter"
+                    textAlign="Center"
+                    wrapping="true"
+                    maxLines="4"
+                    wrappingType="Hyphenated"
+                />
+
+                <VBox
+                    id="idPara"
+                    class="waviy"
+                />
+            </VBox>
+        </HBox>
+
+        <Carousel
+            id="idPortal"
+            loop="true"
+            showPageIndicator="false"
+            pageChanged="onPageChanged"
+            height="100%"
+            width="100%"
+        >
+            <Image
+                id="fadeImage"
+                height="80vh"
+                width="100%"
+            />
+        </Carousel>
+
+        <!-- Customer Engagement Section
+        <VBox
+            id="customerEngagementBox"
+            alignItems="Start"
+            justifyContent="Center"
+            class="customerEngagement sapUiMediumMargin"
+        >
+            <Title
+                text="Customer Engagement"
+                level="H3"
+                class="customerEngagementTitle"
+            />
+            <VBox>
+                <HBox>
+                    <core:Icon
+                        src="sap-icon://alert"
+                        class="engagementIcon"
+                    />
+                    <Text
+                        text="Providing support for issues like defective products, replacements, or technical queries."
+                        class="engagementText"
+                    />
+                </HBox>
+                <HBox>
+                    <core:Icon
+                        src="sap-icon://feedback"
+                        class="engagementIcon"
+                    />
+                    <Text
+                        text="Collecting customer feedback for continuous improvement."
+                        class="engagementText"
+                    />
+                </HBox>
+                <HBox>
+                    <core:Icon
+                        src="sap-icon://education"
+                        class="engagementIcon"
+                    />
+                    <Text
+                        text="Offering guides or tutorials on product use for DIY consumers."
+                        class="engagementText"
+                    />
+                </HBox>
+            </VBox>
+        </VBox> -->
+
+        <HBox
+            alignItems="Center"
+            justifyContent="Center"
+        >
+            <VBox
+                class="contentBox sapUiLargePadding"
+                justifyContent="Center"
+                alignItems="Center"
+                width="100%"
+            >
+                <Text
+                    id="idPara3"
+                    text="Exploring recyclable packaging and sustainable raw material sourcing."
+                    class="paragraphText animate-charcter"
+                    textAlign="Center"
+                    wrapping="true"
+                    maxLines="4"
+                    wrappingType="Hyphenated"
+                />
+
+                <Text
+                    id="idPara4"
+                    text="Energy-efficient manufacturing techniques to minimize environmental impact."
+                    class="paragraphText animate-charcter"
+                    textAlign="Center"
+                    wrapping="true"
+                    maxLines="4"
+                    wrappingType="Hyphenated"
+                />
+            </VBox>
+        </HBox>
+
+        <!-- Footer Section -->
+        <Toolbar class="footerToolbar">
+            <HBox class="newsTickerBox">
+                <Text
+                    id="idNewsText"
+                    text="Registered Office: SUNDRAM FASTENERS LIMITED,
+                          98 - A, VII Floor,
+                          Dr. Radhakrishnan Salai,
+                          Mylapore, Chennai - 600 004, India.
+                          Phone: +91 44 28478500,
+                          E-mail: hq@corp.sfl.co.in"
+                    class="newsText"
+                />
+            </HBox>
+
+            <ToolbarSpacer />
+            <core:Icon
+                src="sap-icon://call"
+                size="1rem"
+            />
+        </Toolbar>
+    </VBox>
+</core:FragmentDefinition>

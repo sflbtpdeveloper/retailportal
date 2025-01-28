@@ -1,0 +1,2 @@
+sap.ui.define(["zretail_sfl/controller/BaseController"],function(e){"use strict";return e.extend("zretail_sfl.controller.upload",{onInit:function(){debugger}})});
+//# sourceMappingURL=upload.controller.js.map

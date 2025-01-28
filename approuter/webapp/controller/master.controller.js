@@ -1,0 +1,2 @@
+sap.ui.define(["zretail_sfl/controller/BaseController","sap/ui/model/Filter","sap/ui/model/FilterOperator"],function(e,t,r){"use strict";return e.extend("zretail_sfl.controller.master",{onInit:function(){this.oRouter=this.getOwnerComponent().getRouter()}})});
+//# sourceMappingURL=master.controller.js.map

@@ -1,0 +1,86 @@
+<mvc:View
+    controllerName="zretail_sfl.controller.StkUpload"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+>
+    <Page id="StkUpload">
+        <content>
+            <!-- Header Section -->
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="SpaceBetween"
+            >
+                <Image
+                    src="/image/logo.png"
+                    alt="Company Logo"
+                    densityAware="false"
+                    width="4rem"
+                />
+                <VBox
+                    alignItems="Center"
+                    width="100%"
+                >
+                    <Title
+                        text="Sundram Fasteners Limited"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiMediumMarginTop customTitle"
+                    />
+                    <Title
+                        text="Stock Upload"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                    />
+                </VBox>
+                <HBox width="4rem" />
+            </HBox>
+
+            <!-- File Upload Section (Square box) -->
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="Center"
+                class="customFileUploadContainer"
+            >
+                <unified:FileUploader
+                    id="fileUploader"
+                    name="myFileUpload"
+                    change="onFileChange"
+                    class="customFileUploader"
+                    width="20rem"  
+               
+                    placeholder="Choose a file or drag and drop it here"
+                    fileType="xls,xlsx"
+                    buttonText="Browse File"
+                />
+                <Button
+                    id="btnRemove"
+                    icon="sap-icon://decline"
+                    press="onRemoveFile"
+                    visible="false"
+                    type="Transparent"
+                    tooltip="Remove file"
+                    width="3rem"
+                />
+            </HBox>
+
+            <!-- Upload Button -->
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="Center"
+                class="customButtonContainer"
+            >
+                <Button
+                    text="Upload"
+                    press="onUploadPress"
+                    width="20rem"  
+                    type="Emphasized"
+                />
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,48 @@
+{
+  "xsappname": "${xsappname}",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of getuserinfo",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.read",
+      "description": "role to read data"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "Viewer",
+      "description": "Viewer Role",
+      "scope-references": [
+        "$XSAPPNAME.read"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "RETAIL_RoleCollection",
+      "description": "Retail Role Collection",
+      "role-template-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [     
+      "https://retail-dev.sfl.co.in/*",   
+      "https://retail-dev.sfl.co.in/login/callback",          
+      "https://retailops.sfl.co.in/*",   
+      "https://retailops.sfl.co.in/login/callback"     
+    ]
+  }    
+}

@@ -1,0 +1,245 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
+    xmlns:l="sap.ui.layout"
+    controllerName="zretail_sfl.controller.divisions"
+>
+    <Page
+        id="_IDGenPage3"
+        showHeader="false"
+        showFooter="false"
+        backgroundDesign="Transparent"
+        navButtonPress="onNavBack"
+        showNavButton="false"
+    >
+        <tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls">
+            <Image
+                id="_IDGenImage4"
+                src="/images/sfllogoonly.png"
+                width="2rem"
+                height="3rem"
+                decorative="false"
+                press="onLogoPressed"
+                tooltip="SAP Logo"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Image>
+            <Title
+                id="_IDGenTitle3"
+                text="Sundram Fasteners Limited"
+                wrapping="false"
+                class="companyHeading"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData1"
+                        priority="Disappear"
+                    />
+                </layoutData>
+            </Title>
+            <!-- Spacer to push the title to the center -->
+            <ToolbarSpacer />
+
+            <!-- Title with custom theme -->
+            <Title
+                id="_IDGenRetailPortalTitle"
+                text="RETAIL PORTAL"
+                textAlign="Center"
+                titleStyle="Auto"
+                class="retailPortalTitle zoomOutImage"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutDataCenter"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Title>
+
+            <!-- Spacer to balance the layout -->
+            <ToolbarSpacer />
+
+            <ToolbarSpacer id="_IDGenToolbarSpacer" />
+            <HBox>
+                <Link
+                    text="About Us"
+                    press="onAboutUsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="News"
+                    press="onNewsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="Events"
+                    press="onEventsPress"
+                    class="customLink"
+                />
+                <Label text=" | " />
+                <Link
+                    text="Contacts"
+                    press="onContactsPress"
+                    class="customLink"
+                />                
+            </HBox>
+
+            <Avatar
+                id="_IDGenAvatar1"
+                src="sap-icon://customer"
+                displaySize="XS"
+                press=".onAvatarPressed"
+                tooltip="Profile"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData
+                        id="_IDGenOverflowToolbarLayoutData2"
+                        priority="NeverOverflow"
+                    />
+                </layoutData>
+            </Avatar>
+            <Avatar
+                id="_IDGenAvatar2"
+                src="sap-icon://log"
+                displaySize="XS"
+                press="onLogOut"
+                tooltip="Sign Out"
+            >
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Avatar>
+        </tnt:ToolHeader>
+        <IconTabHeader
+            id="_IDGenIconTabHeader"
+            mode="Inline"
+            select="onTabSelect"
+        >
+            <items>
+                <IconTabFilter
+                    id="_IDGenIconTabFilterHome"
+                    key="Home"
+                    text="  "
+                    icon="sap-icon://home"
+                />
+                <IconTabFilter
+                    id="_IDGenIconTabFilter"
+                    key="Upload"
+                    text="Upload"
+                />
+                <IconTabFilter
+                    id="_IDGenIconTabFilter1"
+                    key="Reports"
+                    text="Reports"
+                />
+                <!-- <IconTabFilter
+                    id="_IDGenIconTabFilter2"
+                    key="Claims"
+                    text="Claims"
+                />
+                <IconTabFilter
+                    id="_IDGenIconTabFilter3"
+                    key="Products"
+                    text="Products/Pricing"
+                />
+                <IconTabFilter
+                    id="_IDGenIconTabFilter4"
+                    key="Info"
+                    text="Info"
+                />
+                <IconTabFilter
+                    id="_IDGenIconTabFilter5"
+                    key="Dash"
+                    text="Dashboard"
+                /> -->
+            </items>
+        </IconTabHeader>
+
+        <customHeader>
+            <Bar id="_IDGenBar1">
+                <contentRight>
+                    <HBox>
+                        <Link
+                            text="About Us"
+                            press="onAboutUsPress"
+                            class="customLink"
+                        />
+                        <Label text=" | " />
+                        <Link
+                            text="News"
+                            press="onNewsPress"
+                            class="customLink"
+                        />
+                        <Label text=" | " />
+                        <Link
+                            text="Events"
+                            press="onEventsPress"
+                            class="customLink"
+                        />
+                        <Label text=" | " />
+                        <Link
+                            text="Contacts"
+                            press="onContactsPress"
+                            class="customLink"
+                        />
+                        <Label text=" | " />
+                        <Link
+                            text="Logout"
+                            press="onLogOut"
+                            class="customLink"
+                            icon="sap-icon://log"
+                            tooltip="Sign Out"
+                        />
+                        <!-- <Label text=" | " />
+                        <Link
+                            id="idLName2"
+                            text="{userModel>/user/given_name} {userModel>/user/family_name}"
+                            textAlign="Right"
+                            class="boldtext"
+                        /> -->
+                    </HBox>
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <Popover
+            id="popover"
+            placement="Bottom"
+            contentWidth="200px"
+            showHeader="false"
+        >
+            <VBox>
+                <List
+                    id="idList"
+                    items="{localData>/items}"
+                    growingThreshold="5"
+                    growingScrollToLoad="false"
+                    mode="None"
+                    selectionChange="onPress"
+                >
+                    <StandardListItem
+                        title="{localData>text}"
+                        type="Active"
+                        press="onPress"
+                    />
+                </List>
+            </VBox>
+        </Popover>
+
+        <content>
+            <VBox
+                id="fragmentContainer"
+            />
+        </content>
+    </Page>
+</mvc:View>

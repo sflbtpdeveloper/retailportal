@@ -1,0 +1,10 @@
+<m:Popover xmlns:m="sap.m" id="userdetails" placement="Auto" >
+    <m:VBox>
+        <m:Label text="First Name: {userModel>/user/given_name}" />
+        <m:Label text="Last  Name: {userModel>/user/family_name}" />
+        <m:Label text="Email : {userModel>/email}"/>
+        <m:Label text="Company: {userModel>/company}" />
+        <m:Label text="Division: {userModel>/division}" />    
+    </m:VBox>
+</m:Popover>
+

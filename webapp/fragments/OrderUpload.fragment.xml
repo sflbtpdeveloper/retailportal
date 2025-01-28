@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+    controllerName="zretail_sfl.controller.OrderUpload"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+>
+    <VBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Title
+                    text="Order Upload"
+                    textAlign="Center"
+                    titleStyle="Auto"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                />
+            </VBox>
+            <HBox width="4rem" />
+        </HBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="customFileUploadContainer"
+        >
+            <unified:FileUploader
+                id="myFileUploadORD" 
+                name="myFileUpload"
+                change="onFileChange"
+                placeholder="Choose a file or drag and drop it here"
+                fileType="xls,xlsx"
+                buttonText="Browse File"
+                width="20rem"
+                class="customFileUploader"
+            />
+            <Button
+                icon="sap-icon://decline"
+                press="onRemoveFile"
+                visible="false"
+                type="Transparent"
+                tooltip="Remove file"
+                width="3rem"
+            />
+        </HBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="customButtonContainer"
+        >
+            <Button
+                text="Upload"
+                press="onUploadPress"
+                type="Emphasized"
+                width="20rem"
+            />
+        </HBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="customButtonContainer"
+        >
+            <Button
+                icon="sap-icon://download"
+                text="Download Template"
+                press="onDownloadTemplate"
+                type="Emphasized"
+                tooltip="Download Excel Template"
+            />
+        </HBox>
+        <!-- Add a container for error download link -->
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="customButtonContainer"
+            id="errorDownloadContainer"
+        >
+            <!-- Download link will be appended here -->
+        </HBox>
+
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="Center"            
+            id="errorTableContainer"
+        >            
+        </HBox>        
+    </VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,333 @@
+<core:FragmentDefinition
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    controllerName="zretail_sfl.controller.OrderDes"
+>
+    <VBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Title
+                    text="Orders - Dispatch Status"
+                    textAlign="Center"
+                    titleStyle="Auto"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                />
+            </VBox>
+            <HBox width="4rem" />
+        </HBox>
+        <Toolbar>
+            <SearchField
+                id="id_werk_od"
+                width="10%"
+                placeholder="Plant"
+                liveChange="onPlant"
+            />
+
+            <SearchField
+                id="id_vbkur_od"
+                width="15%"
+                placeholder="Sales office"
+                liveChange="onSO"
+            />
+            <SearchField
+                id="id_vkgrp_od"
+                width="15%"
+                placeholder="Sales Group"
+                liveChange="onSG"
+            />
+
+            <SearchField
+                id="id_kunnr_od"
+                width="15%"
+                placeholder="Sold-to-Party"
+                liveChange="onSotp"
+            />
+            <SearchField
+                id="id_shprty_od"
+                width="15%"
+                placeholder="Ship-to-Party"
+                liveChange="onShtp"
+            />
+            <SearchField
+                id="id_bstkd_od"
+                width="15%"
+                placeholder="PO"
+                liveChange="onPO"
+            />
+            <SearchField
+                id="id_bstdk_od"
+                width="15%"
+                placeholder="Date"
+                liveChange="onDAT"
+            />
+        </Toolbar>
+        <Toolbar>
+            <SearchField
+                id="id_ordno_od"
+                width="15%"
+                placeholder="Order"
+                liveChange="onORD"
+            />
+            <SearchField
+                id="id_part_od"
+                width="20%"
+                placeholder="Part"
+                liveChange="onPart"
+            />
+            <ToolbarSpacer />
+            <Button
+                text="Download Excel"
+                press="onDownloadExcel"
+                type="Ghost"
+                icon="sap-icon://excel-attachment"
+                width="10%"
+            />
+        </Toolbar>
+        <ScrollContainer
+            width="100%"
+            height="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <Table
+                id="__OrderDesTable"
+                items="{listModel>/}"
+                growing="true"
+                growingThreshold="20"
+                fixedLayout="false"
+                growingScrollToLoad="false"
+                width="auto"
+                class="customTableHeader"
+            >
+                <columns>
+                    <Column>
+                        <Label text="Sales Office" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Group" />
+                    </Column>
+                    <Column>
+                        <Label text="Region" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="City"
+                            width="120px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Sold To"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Ship To"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="PO Reference No/Date" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Order No/Item/Date" />
+                    </Column>
+
+                    <Column>
+                        <Label text="Invoice Number/Date" />
+                    </Column>
+
+                    <Column>
+                        <Label
+                            text="Sales Value"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Plant" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Material/Desc"
+                            width="250px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Quantity"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="LR No/Date"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Transporter Name" />
+                    </Column>
+                    <Column>
+                        <Label text="Secondary LR No/Date" />
+                    </Column>
+                    <Column>
+                        <Label text="Secondary LR Transporter" />
+                    </Column>
+                    <Column>
+                        <Label text="Invoice Value" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Sold to Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Ship to Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="IGST Amount" />
+                    </Column>
+                    <Column>
+                        <Label text="SGST Amount" />
+                    </Column>
+                    <Column>
+                        <Label text="CGST Amount" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Plant Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="No. of Packs" />
+                    </Column>
+                    <Column>
+                        <Label text="GRN No/Date" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Entered Material"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="TCS Amt"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Invoice Value with TCS" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Ort01}" />
+                            <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>ShipParty}" />
+                            <ObjectIdentifier
+                                title="{listModel>Bstkd}"
+                                text="{listModel>Bstdk}"
+                            />
+                            <VBox>
+                                <Text text="{listModel>SoNo}" />
+                                <Text text="{listModel>Posnr}" />
+                                <Text text="{listModel>SoDt}" />
+                            </VBox>
+                            <ObjectIdentifier
+                                title="{listModel>InvNo}"
+                                text="{listModel>InvDat}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>SalVal}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>SalVal', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+
+                            <ObjectIdentifier title="{listModel>Werks}" />
+                            <ObjectIdentifier
+                                title="{listModel>Matnr}"
+                                text="{listModel>Arktx}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Kwmeng'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <ObjectIdentifier
+                                title="{listModel>Lrno}"
+                                text="{listModel>Lrdate}"
+                            />
+                            <ObjectIdentifier title="{listModel>Tname}" />
+                            <ObjectIdentifier
+                                title="{listModel>Slrno}"
+                                text="{listModel>Slrdate}"
+                            />
+                            <ObjectIdentifier title="{listModel>Stname}" />
+                            <!-- <ObjectIdentifier title="{listModel>InvVal}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>InvVal', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+
+                            <ObjectIdentifier title="{listModel>SoName}" />
+                            <ObjectIdentifier title="{listModel>ShName}" />
+                            <!-- <ObjectIdentifier title="{listModel>Igst}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Igst', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+
+                            <!-- <ObjectIdentifier title="{listModel>Sgst}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Sgst', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Cgst}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Cgst', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <ObjectIdentifier title="{listModel>Pname}" />
+                            <!-- <ObjectIdentifier title="{listModel>Nop}" /> -->
+                            <ObjectIdentifier title="{parts: [{path: 'listModel>Nop'}], 
+                                                      formatter: '.formatter.formatInteger'}"/>                             
+                            <ObjectIdentifier
+                                title="{listModel>Grnno}"
+                                text="{listModel>Grndate}"
+                            />
+                            <ObjectIdentifier title="{listModel>Matent}" />
+                            <!-- <ObjectIdentifier title="{listModel>Tcs}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Tcs', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>InvTcs}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>InvTcs', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+        <!-- </content>
+    </Page> -->
+    </VBox>
+</core:FragmentDefinition>

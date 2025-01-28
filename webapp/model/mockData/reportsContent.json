@@ -1,0 +1,13 @@
+{
+    "items": [
+    { "key": "item1", "text": "Order Acknowledgement" },
+    { "key": "item2", "text": "Pending Order Status" },         
+    { "key": "item2", "text": "Dispatch Status" },         
+    { "key": "item2", "text": "GRN Status" },         
+    { "key": "item2", "text": "Test Certificate" },         
+    { "key": "item2", "text": "SFL Stock Information" },
+    { "key": "item2", "text": "Price List" },
+    { "key": "item2", "text": "Payment Outstanding" }
+
+]    
+}

@@ -1,0 +1,54 @@
+{    
+    "welcomeFile": "index.html",
+    "authenticationMethod": "route",
+    
+    "logout": {
+        "logoutEndpoint": "/nodeapp/custom/logout",
+        "logoutPage": "/index.html",
+        "logoutMethod": "POST",
+        "csrfProtection": true
+    },      
+    "routes": [       
+        {
+            "source": "^/login/callback$",
+            "target": "/",
+            "localDir": "webapp/",
+            "authenticationType": "xsuaa"
+          },         
+        {
+            "source": "^/nodeapp/refreshSession$",
+            "target": "/refreshSession",
+            "destination": "node_api",             
+            "csrfProtection": true,
+            "authenticationType": "xsuaa"        
+        },                       
+        {
+            "source": "^/nodeapp/(.*)$",
+            "target": "/$1",
+            "destination": "node_api",
+            "authenticationType": "xsuaa",  
+            "csrfProtection": false                                  
+        },        
+        {
+            "source": "^/sap/(.*)$",
+            "target": "/sap/$1",
+            "destination": "SFD_HTTPS",
+            "authenticationType": "xsuaa",
+            "csrfProtection": false            
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",                        
+            "localDir": "webapp/",
+            "authenticationType": "xsuaa",
+            "cacheControl": "no-cache, no-store, must-revalidate"            
+        },
+        {
+            "source": "^/index.html$",
+            "target": "/index.html",
+            "localDir": "webapp/",
+            "authenticationType": "none",
+            "cacheControl": "no-store, no-cache, must-revalidate, private"
+        }                   
+    ]
+}

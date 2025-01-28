@@ -1,0 +1,7 @@
+{
+    "items": [
+    { "key": "item1", "text": "Claim Registration" },
+    { "key": "item2", "text": "Claim Status" },   
+    { "key": "item2", "text": "User Management" }           
+]    
+}

@@ -1,0 +1,252 @@
+<core:FragmentDefinition
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    controllerName="zretail_sfl.controller.OrderPen"
+>
+    <VBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Title
+                    text="Orders - Pending"
+                    textAlign="Center"
+                    titleStyle="Auto"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                />
+            </VBox>
+            <HBox width="4rem" />
+        </HBox>
+        <Toolbar>
+            <SearchField
+                id="id_werk_op"
+                width="10%"
+                placeholder="Plant"
+                liveChange="onPlant"
+            />
+
+            <SearchField
+                id="id_vbkur_op"
+                width="15%"
+                placeholder="Sales office"
+                liveChange="onSO"
+            />
+            <SearchField
+                id="id_vkgrp_op"
+                width="15%"
+                placeholder="Sales Group"
+                liveChange="onSG"
+            />
+
+            <SearchField
+                id="id_kunnr_op"
+                width="15%"
+                placeholder="Sold-to-Party"
+                liveChange="onSotp"
+            />
+            <SearchField
+                id="id_shprty_op"
+                width="15%"
+                placeholder="Ship-to-Party"
+                liveChange="onShtp"
+            />
+            <SearchField
+                id="id_bstkd_op"
+                width="15%"
+                placeholder="PO"
+                liveChange="onPO"
+            />
+            <SearchField
+                id="id_bstdk_op"
+                width="15%"
+                placeholder="Date"
+                liveChange="onDAT"
+            />
+        </Toolbar>
+        <Toolbar>
+            <SearchField
+                id="id_ordno_op"
+                width="15%"
+                placeholder="Order"
+                liveChange="onORD"
+            />
+            <SearchField
+                id="id_part_op"
+                width="20%"
+                placeholder="Part"
+                liveChange="onPart"
+            />
+            <ToolbarSpacer />
+            <Button
+                text="Download Excel"
+                press="onDownloadExcel"
+                type="Ghost"
+                icon="sap-icon://excel-attachment"
+                width="10%"
+            />
+        </Toolbar>
+
+        <ScrollContainer
+            width="100%"
+            height="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <Table
+                id="__PenOrdTable"
+                items="{listModel>/}"
+                growing="true"
+                growingThreshold="20"
+                fixedLayout="false"                
+                width="auto"
+                class="customTableHeader"
+            >
+                <columns>
+                    <Column>
+                        <Label text="Sales Office" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Group" />
+                    </Column>
+                    <Column>
+                        <Label text="Region" />
+                    </Column>
+                    <Column>
+                        <Label text="Sold-to Party" />
+                    </Column>
+                    <Column>
+                        <Label text="Ship-to Party" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="PO Reference/Date"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Order/Item/Date" />
+                    </Column>
+                    <Column>
+                        <Label text="Plant" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Material/Desc"
+                            width="250px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Pending Qty" />
+                    </Column>
+                    <Column>
+                        <Label text="Pending Values(in Lakhs)" />
+                    </Column>
+                    <Column>
+                        <Label text="Sold-to Party Name" />
+                    </Column>
+                    <Column>
+                        <Label text="Ship-to Party Name" />
+                    </Column>
+                    <Column>
+                        <Label text="Pending for invoice qty" />
+                    </Column>
+                    <Column>
+                        <Label text="Order qty" />
+                    </Column>
+                    <Column>
+                        <Label text="Dispatch qty" />
+                    </Column>
+                    <Column>
+                        <Label text="Total Pending qty" />
+                    </Column>
+                    <Column>
+                        <Label text="Order Value" />
+                    </Column>
+                    <Column>
+                        <Label text="Dispatch Value" />
+                    </Column>
+                    <Column>
+                        <Label text="Entered Material" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>Kunrg}" />
+                            <ObjectIdentifier
+                                title="{listModel>Bstkd}"
+                                text="{listModel>Bstdk}"
+                            />
+                            <VBox>
+                                <Text text="{listModel>Vbeln}" />
+                                <Text text="{listModel>Posnr}" />
+                                <Text text="{listModel>Erdat}" />
+                                <!-- <Text
+                                    text="{path: 'listModel>Erdat', formatter: '.formatDate'}"
+                                /> -->
+                            </VBox>
+                            <ObjectIdentifier title="{listModel>Werks}" />
+                            <ObjectIdentifier
+                                title="{listModel>Matnr}"
+                                text="{listModel>Maktx}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Omeng}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Omeng'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <ObjectIdentifier
+                                title="{path: 'listModel>Kbetr', formatter: '.formatter.formatToTwoDecimals'}"
+                            />
+                            <ObjectIdentifier title="{listModel>Cname1}" />
+                            <ObjectIdentifier title="{listModel>Name1}" />
+                            <!-- <ObjectIdentifier title="{listModel>Lfimg}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Lfimg'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Kwmeng'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>DisQty}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>DisQty'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>TPending'}], formatter: '.formatter.formatInteger'}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Ovalue}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Ovalue', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Dvalue}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Dvalue', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <ObjectIdentifier title="{listModel>Matent}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+        <!-- </content>
+    </Page> -->
+    </VBox>
+</core:FragmentDefinition>

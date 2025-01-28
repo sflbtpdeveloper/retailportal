@@ -1,0 +1,253 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    controllerName="zretail_sfl.controller.OrderDes"
+>
+    <Page
+        id="OrderDes"
+        showFooter="false"
+        showHeader="false"
+        showNavButton="false"
+    >
+        <content>
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="SpaceBetween"
+            >
+                <Image
+                    src="/image/logo.png"
+                    alt="Company Logo"
+                    densityAware="false"
+                    width="4rem"
+                />
+                <VBox
+                    alignItems="Center"
+                    width="100%"
+                >
+                    <Title
+                        text="Sundram Fasteners Limited"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiMediumMarginTop customTitle"
+                    />
+                    <Title
+                        text="Orders - Dispatch Status"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                    />
+                </VBox>
+                <HBox width="4rem" />
+            </HBox>
+            <ScrollContainer
+                width="100%"
+                height="450px"
+                horizontal="true"
+                vertical="true"
+            >
+                <Table
+                    id="orderDes"
+                    items="{listModel>/}"
+                    growing="true"
+                    growingThreshold="20"
+                    fixedLayout="false"                    
+                    width="auto"
+                    class="customTableHeader"
+                >
+                    <columns>
+                        <Column>
+                            <Label text="Sales Office" />
+                        </Column>
+                        <Column>
+                            <Label text="Sales Group" />
+                        </Column>
+                        <Column>
+                            <Label text="Region" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="City"
+                                width="120px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Sold To"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Ship To"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="PO Reference No/Date" />
+                        </Column>
+                        <Column>
+                            <Label text="Sales Order No/Item/Date" />
+                        </Column>
+
+                        <Column>
+                            <Label text="Invoice Number/Date" />
+                        </Column>
+
+                        <Column>
+                            <Label
+                                text="Sales Value"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="Plant" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Material/Desc"
+                                width="250px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Quantity"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="LR No/Date"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="Transporter Name" />
+                        </Column>
+                        <Column>
+                            <Label text="Secondary LR No/Date" />
+                        </Column>
+                        <Column>
+                            <Label text="Secondary LR Transporter" />
+                        </Column>
+                        <Column>
+                            <Label text="Invoice Value" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Sold to Name"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Ship to Name"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="IGST Amount" />
+                        </Column>
+                        <Column>
+                            <Label text="SGST Amount" />
+                        </Column>
+                        <Column>
+                            <Label text="CGST Amount" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Plant Name"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="No. of Packs" />
+                        </Column>
+                        <Column>
+                            <Label text="GRN No/Date" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Entered Material"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="TCS Amt"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="Invoice Value with TCS" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <ObjectIdentifier title="{listModel>Vbkur}" />
+                                <ObjectIdentifier title="{listModel>Vkgrp}" />
+                                <ObjectIdentifier title="{listModel>Regio}" />
+                                <ObjectIdentifier title="{listModel>Ort01}" />
+                                <ObjectIdentifier title="{listModel>Kunnr}" />
+                                <ObjectIdentifier
+                                    title="{listModel>ShipParty}"
+                                />
+                                <ObjectIdentifier
+                                    title="{listModel>Bstkd}"
+                                    text="{listModel>Bstdk}"
+                                />
+                                <VBox>
+                                    <Text text="{listModel>SoNo}" />
+                                    <Text text="{listModel>Posnr}" />
+                                    <Text text="{listModel>SoDt}" />
+                                </VBox>
+                                <ObjectIdentifier
+                                    title="{listModel>InvNo}"
+                                    text="{listModel>InvDat}"
+                                />
+                                <ObjectIdentifier title="{listModel>SalVal}" />
+                                <ObjectIdentifier title="{listModel>Werks}" />
+                                <ObjectIdentifier
+                                    title="{listModel>Matnr}"
+                                    text="{listModel>Arktx}"
+                                />
+                                <ObjectIdentifier title="{listModel>Kwmeng}" />
+                                <ObjectIdentifier
+                                    title="{listModel>Lrno}"
+                                    text="{listModel>Lrdate}"
+                                />
+                                <ObjectIdentifier title="{listModel>Tname}" />
+                                <ObjectIdentifier
+                                    title="{listModel>Slrno}"
+                                    text="{listModel>Slrdate}"
+                                />
+                                <ObjectIdentifier title="{listModel>Stname}" />
+                                <ObjectIdentifier title="{listModel>InvVal}" />
+                                <ObjectIdentifier title="{listModel>SoName}" />
+                                <ObjectIdentifier title="{listModel>ShName}" />
+                                <ObjectIdentifier title="{listModel>Igst}" />
+                                <ObjectIdentifier title="{listModel>Sgst}" />
+                                <ObjectIdentifier title="{listModel>Cgst}" />
+                                <ObjectIdentifier title="{listModel>Pname}" />
+                                <ObjectIdentifier title="{listModel>Nop}" />
+                                <ObjectIdentifier
+                                    title="{listModel>Grnno}"
+                                    text="{listModel>Grndate}"
+                                />
+                                <ObjectIdentifier title="{listModel>Matent}" />
+                                <ObjectIdentifier title="{listModel>Tcs}" />
+                                <ObjectIdentifier title="{listModel>InvTcs}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

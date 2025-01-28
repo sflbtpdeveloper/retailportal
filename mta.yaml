@@ -1,0 +1,94 @@
+_schema-version: 3.2.0
+ID: ui5-approuter
+description: Retail management configuration
+version: 1.0.0
+modules:
+  #-----------------------------------------------------------------
+  - name: nodeapp
+    #-----------------------------------------------------------------
+    type: nodejs
+    path: ./NodeApp
+    requires:
+      - name: retail-xsuaa
+      - name: retaildest
+      - name: retail-connectivity
+    provides:
+      - name: node_api
+        properties:
+          url: "${default-url}"
+          forwardAuthToken: true
+    parameters:
+      disk-quota: 1G
+      memory: 1G
+      start-command: npm start # Ensure that Cloud Foundry starts the app in inspect mode
+    build-parameters:
+      builder: custom
+      buildpack: nodejs_buildpack # Add the nodejs_buildpack here
+      commands:
+        - npm install
+  #-----------------------------------------------------------------
+  - name: ui5
+    #-----------------------------------------------------------------
+    type: html5
+    path: ./webapp # Path to your UI5 app
+    requires:
+      - name: retail-xsuaa
+      - name: node_api
+      - name: ui5-approuter_html_repo_host # HTML5 app repository is required to store the app
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - ui5 build --dest ../approuter/webapp
+      timeout: 20m
+      supported-platforms: []
+
+    parameters:
+      disk-quota: 128M
+      memory: 128M
+  #-----------------------------------------------------------------
+  - name: approuter_scm
+    #-----------------------------------------------------------------
+    type: approuter.nodejs
+    path: ./approuter
+    requires:
+      - name: retail-xsuaa
+      - name: retaildest
+      - name: retail-connectivity
+      - name: node_api
+    parameters:
+      disk-quota: 1G
+      memory: 1G        
+      routes:
+       - route: ${space}.sfl.co.in # Dynamic route based on CF space name
+
+resources:
+  - name: retaildest
+    type: org.cloudfoundry.managed-service
+    description: Destination Service
+    parameters:
+      service: destination
+      service-name: retail-destination
+      service-plan: lite
+  - name: retail-connectivity
+    type: org.cloudfoundry.managed-service
+    description: Connectivity Service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: retail-xsuaa
+    type: org.cloudfoundry.managed-service
+    description: xsuaa Security service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application      
+      config:
+        xsappname: retailuserinfo-${space}      
+  - name: ui5-approuter_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+parameters:
+  enable-parallel-deployments: true

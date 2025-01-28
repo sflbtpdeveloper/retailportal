@@ -1,0 +1,319 @@
+<core:FragmentDefinition
+    controllerName="zretail_sfl.controller.OrderAck"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+>
+    <VBox>
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Title
+                    text="Orders - Acknowledgement"
+                    textAlign="Center"
+                    titleStyle="Auto"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                />
+            </VBox>
+            <HBox width="4rem" />
+        </HBox>
+        <Toolbar>
+            <SearchField
+                id="id_werk"
+                width="10%"
+                placeholder="Plant"
+                liveChange="onPlant"
+            />
+
+            <SearchField
+                id="id_vbkur"
+                width="15%"
+                placeholder="Sales office"
+                liveChange="onSO"
+            />
+            <SearchField
+                id="id_vkgrp"
+                width="15%"
+                placeholder="Sales Group"
+                liveChange="onSG"
+            />
+
+            <SearchField
+                id="id_kunnr"
+                width="15%"
+                placeholder="Sold-to-Party"
+                liveChange="onSotp"
+            />
+            <SearchField
+                id="id_shprty"
+                width="15%"
+                placeholder="Ship-to-Party"
+                liveChange="onShtp"
+            />
+            <SearchField
+                id="id_bstkd"
+                width="15%"
+                placeholder="PO"
+                liveChange="onPO"
+            />
+            <SearchField
+                id="id_bstdk"
+                width="15%"
+                placeholder="Date"
+                liveChange="onDAT"
+            />
+        </Toolbar>
+        <Toolbar>
+            <SearchField
+                id="id_ordno"
+                width="15%"
+                placeholder="Order"
+                liveChange="onORD"
+            />
+            <SearchField
+                id="id_part"
+                width="20%"
+                placeholder="Part"
+                liveChange="onPart"
+            />
+            <ToolbarSpacer />
+            <!-- 10.01.2025 -->
+            <!-- <Button
+                text="Layout Selection"
+                press="onOpenLayoutDialog"
+                type="Ghost"
+                icon="sap-icon://action-settings"
+                width="auto"
+            /> -->
+            <!-- 10.01.2025 -->
+            <Button
+                text="Download Excel"
+                press="onDownloadExcel"
+                type="Ghost"
+                icon="sap-icon://excel-attachment"
+                width="auto"
+            />
+        </Toolbar>
+        <ScrollContainer
+            width="100%"
+            height="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <Table
+                id="__OrderAckTable"
+                items="{path:'listModel>/'}"
+                width="auto"
+                growing="true"
+                growingThreshold="20"
+                fixedLayout="false"
+                class="customTableHeader"
+            >
+                <columns>
+                    <Column>
+                        <Label text="Sales Office" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Group" />
+                    </Column>
+                    <Column>
+                        <Label text="Region" />
+                    </Column>
+                    <Column>
+                        <Label text="Sold-to-Party" />
+                    </Column>
+                    <Column>
+                        <Label text="Ship-to-Party" />
+                    </Column>
+                    <Column>
+                        <Label text="PO Reference / PO Date" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Order No / Item / Date" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Part Number / Desc"
+                            width="250px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Quantity"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label text="Plant" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Sales Value"
+                            width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Sold-to-Party Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Ship-to-Party Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Entered Material"
+                            width="150px"
+                        />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Inactive">
+                        <cells>
+                            <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>ShipParty}" />
+                            <ObjectIdentifier
+                                title="{listModel>Bstkd}"
+                                text="{listModel>Bstdk}"
+                            />
+                            <VBox>
+                                <ObjectIdentifier title="{listModel>Vbeln}" />
+                                <!-- <Text text="{listModel>Posnr}" /> -->
+                                <Text
+                                    text="{parts: [{path: 'listModel>Posnr'}], formatter: '.formatter.removeLeadingZeros'}"
+                                />
+                                <Text text="{listModel>Erdat}" />
+                                <!-- <Text text="{path: 'listModel>Erdat', formatter: '.formatter.formatDate'}" /> -->
+                            </VBox>
+                            <ObjectIdentifier
+                                title="{listModel>Matnr}"
+                                text="{listModel>Arktx}"
+                            />
+                            <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Kwmeng'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
+                            <ObjectIdentifier title="{listModel>Werks}" />
+                            <!-- <ObjectIdentifier title="{listModel>Kzwi1}" /> -->
+                            <ObjectIdentifier
+                                title="{ path: 'listModel>Kzwi1', formatter: '.formatter.formatToTwoDecimals' }"
+                            />
+                            <ObjectIdentifier title="{listModel>Name1}" />
+                            <ObjectIdentifier title="{listModel>Cname1}" />
+                            <ObjectIdentifier title="{listModel>Matwa}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+        <!-- 10.01.2025 -->
+        <!-- Column Visibility Selection Dialog -->
+        <!-- <Dialog
+            id="layoutDialog"
+            title="Select Columns to Display"
+            stretch="true"
+            draggable="true"
+            resizable="true"
+        >
+            <VBox>
+                <CheckBox
+                    text="Sales Office"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Sales Group"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Region"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Sold-to-Party"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Ship-to-Party"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="PO Reference / PO Date"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Sales Order No / Item / Date"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Part Number / Desc"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Quantity"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Plant"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Sales Value"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Sold-to-Party Name"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Ship-to-Party Name"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+                <CheckBox
+                    text="Entered Material"
+                    selected="true"
+                    select="onColumnVisibilityChange"
+                />
+            </VBox>
+            <buttons>
+                <Button
+                    text="OK"
+                    press="onCloseLayoutDialog"
+                />
+            </buttons>
+        </Dialog> -->
+        <!-- 10.01.2025 -->
+        <!-- </content>
+    </Page> -->
+    </VBox>
+</core:FragmentDefinition>

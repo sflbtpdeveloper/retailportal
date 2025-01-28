@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Logout - Sundram fasteners Limited</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <style>
+            @font-face {
+                font-family: "Roboto";
+                src: url("resources/fonts/Roboto-Regular.ttf");
+            }
+
+            html, body {
+                height: 100vh;
+                font-family: Roboto,Arial, Helvetica, sans-serif;
+            }
+
+            #app {
+                height: 100%;
+                overflow: hidden;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .navbar-brand img {
+                height: 2rem;
+            }
+
+            #top-navbar .navbar-text {
+                color: white;
+                font-size: 14px;
+            }
+
+            .session-lost>.row {
+                margin-top: 10rem;
+            }
+
+            .session-lost img {
+                width: 10rem
+            }
+
+            .session-lost .title {
+                font-size: 2.25rem;
+                font-weight: 100;
+            }
+
+            .session-lost .description {
+                font-size: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <nav id="top-navbar" class="navbar navbar-fixed-top px-2 navbar-dark bg-dark navbar-expand">
+                <div class="navbar-brand mr-3">
+                    <img src="data:image/png;base64,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">
+                </div>
+                <span class="navbar-text">Sundram fasteners Limited</span>
+            </nav>
+            <div class="session-lost container-fluid">
+                <div class="row text-center pt-6">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12">
+                        <img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgOTAuNDMiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojM2Y1MDYwO308L3N0eWxlPjwvZGVmcz48dGl0bGU+bG9nb3V0X2JpZzwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTI3LjI3LDU2LjI5bC0yLjU1LDBMMTI0LDUzLjgyQTIwLjg1LDIwLjg1LDAsMCwwLDk1LjM3LDQxbC0yLjQ5LDEuMTRMOTEuMTcsNDBhMzkuNzIsMzkuNzIsMCwwLDAtNzAuNiwyMS4wOWwtLjI0LDIuOC0yLjgxLjM1YTE5LjkxLDE5LjkxLDAsMCwwLDIuNTMsMzkuNjhINDYuNjlsMy4yNS0zLjI0TDQ3LjY1LDk4LjRIMjAuMDVhMTQuMzksMTQuMzksMCwwLDEtMS44NC0yOC42N2w3LjI3LS45MS42My03LjI2QTM0LjE2LDM0LjE2LDAsMCwxLDg2LjgyLDQzLjQzTDkxLjI0LDQ5LDk3LjY5LDQ2YTE1LjE3LDE1LjE3LDAsMCwxLDYuMzYtMS40LDE1LjM1LDE1LjM1LDAsMCwxLDE0LjYxLDEwLjc5bDEuOTEsNi4yNyw2LjU4LjEzYzkuNTQuMiwxNy4yOSw4LjQsMTcuMjksMTguMjgsMCwxMC4xLTcuOTEsMTguMzEtMTcuNjMsMTguMzFIOTguMzVsLTIuMjksMi4yOCwzLjI1LDMuMjRoMjcuNWMxMi43OSwwLDIzLjE5LTEwLjY5LDIzLjE5LTIzLjgzQzE1MCw2Ny4yMiwxMzkuOCw1Ni41NCwxMjcuMjcsNTYuMjlaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0yNS4wNSkiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik04MS42Nyw4MC4xOHY3LjQ0YTEyLjI2LDEyLjI2LDAsMSwxLTE1Ljg4LDBWODAuMThhMTguNTYsMTguNTYsMCwxLDAsMTUuODgsMFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTI1LjA1KSIvPjxyZWN0IGNsYXNzPSJjbHMtMSIgeD0iNzAuMDMiIHk9IjQ3LjM2IiB3aWR0aD0iNy4zOSIgaGVpZ2h0PSIyMS4wOSIgcng9IjMuNDgiLz48L3N2Zz4=">
+                    </div>
+                    <div class="title pt-4 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12">Goodbye</div>
+                    <div class="instructions pt-2 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12">You have logged out.</div>
+                    <div class="pt-5 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12">
+                        <button type="button" class="btn btn-lg btn-primary" onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+            <!---->
+        </div>
+        <script>           
+            function login() {
+                window.location.assign("/index.html");                              
+            }
+        </script>
+    </body>
+</html>

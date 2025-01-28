@@ -1,0 +1,265 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "zretail_sfl",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.15.4",
+      "toolsId": "24934f7f-1b0f-4664-a686-e4696b8ba7d7"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/",
+        "type": "OData",
+        "settings": {
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.130.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zretail_sfl.i18n.i18n"
+        }
+      },
+      "mainService": {
+        "dataSource": "mainService",
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "json": true,
+          "useBatch": false,
+          "serviceUrl": "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/"
+        }
+      },
+      "local": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/payload.json",
+        "preload": true
+      },      
+      "upload": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/uploadContent.json",
+        "preload": true
+      },
+      "reports": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/reportsContent.json",
+        "preload": true
+      },
+      "claims": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/claimContent.json",
+        "preload": true
+      },
+      "propricing": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/propricingContent.json",
+        "preload": true
+      },
+      "info": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/info.json",
+        "preload": true
+      },
+      "dashboard": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/dashboardContent.json",
+        "preload": true
+      },
+      "userModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "preload": true
+      },
+      "accessControl": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {},
+        "uri": "model/mockData/accessControl.json",
+        "preload": true
+      },
+      "selectedDivisionModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "selectedDivision": null
+        }
+      },
+      "tileVisibilityModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "showSflTile": false,
+          "showTplTile": false
+        }
+      },
+      "tileSelectedModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "selectedSflTile": false,
+          "selectedTplTile": false
+        }
+      },      
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "zretail_sfl.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "mainHead"
+          ]
+        },
+        {
+          "name": "operations",
+          "pattern": "operations",
+          "target": [
+            "division"
+          ]
+        },
+        {
+          "name": "upload",
+          "pattern": "upload",
+          "target": [
+            "upload"
+          ]
+        },
+        {
+          "name": "Grnupload",
+          "pattern": "GrnUpld",
+          "target": [
+            "GrnUpld"
+          ]
+        },
+        {
+          "name": "RouteOrderAck",
+          "pattern": "OrderAck",
+          "target": [
+            "OrderAckTarget"
+          ]
+        }
+      ],
+      "targets": {
+        "mainHead": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idwel",
+          "viewName": "welcome"
+        },
+        "division": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idDiv",
+          "viewName": "divisions"
+        },
+        "master": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idMain",
+          "viewName": "master"
+        },
+        "detail": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idwelcome",
+          "viewName": "welcome"
+        },
+        "upload": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idUpload",
+          "viewName": "upload"
+        },
+        "OrderAckTarget": {
+          "viewType": "XML",
+          "viewName": "OrderAck",
+          "controlId": "app",
+          "controlAggregation": "pages"
+        },
+        "GrnUpld": {
+          "viewType": "XML",
+          "controlAggregation": "pages",
+          "viewId": "idGrnUpd",
+          "viewName": "GrnUpload"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zretail_sfl.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}

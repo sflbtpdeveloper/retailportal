@@ -1,0 +1,161 @@
+<mvc:View
+    controllerName="zretail_sfl.controller.OrderAck"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+>
+    <Page
+        id="OrderAck"
+        showFooter="false"
+        showHeader="false"
+        showNavButton="false"
+    >
+        <content>
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="SpaceBetween"
+            >
+                <Image
+                    src="/image/logo.png"
+                    alt="Company Logo"
+                    densityAware="false"
+                    width="4rem"
+                />
+                <VBox
+                    alignItems="Center"
+                    width="100%"
+                >
+                    <Title
+                        text="Sundram Fasteners Limited"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiMediumMarginTop customTitle"
+                    />
+                    <Title
+                        text="Orders - Acknowledgement"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                    />
+                </VBox>
+                <HBox width="4rem" />
+            </HBox>
+            <ScrollContainer
+                width="100%"
+                height="450px"
+                horizontal="true"
+                vertical="true"
+            >
+                <Table
+                    id="myCustomTable"
+                    items="{path:'listModel>/'}"
+                    width="auto"
+                    growing="true"
+                    growingThreshold="20"                    
+                    fixedLayout="false"
+                    class="customTableHeader"
+                >
+                    <columns>
+                        <Column>
+                            <Label text="Sales Office" />
+                        </Column>
+                        <Column>
+                            <Label text="Sales Group" />
+                        </Column>
+                        <Column>
+                            <Label text="Region" />
+                        </Column>
+                        <Column>
+                            <Label text="Sold-to-Party" />
+                        </Column>
+                        <Column>
+                            <Label text="Ship-to-Party" />
+                        </Column>
+                        <Column>
+                            <Label text="PO Reference / PO Date" />
+                        </Column>
+                        <Column>
+                            <Label text="Sales Order No / Item / Date" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Part Number / Desc"
+                                width="250px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Quantity"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label text="Plant" />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Sales Value"
+                                width="100px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Sold-to-Party Name"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Ship-to-Party Name"
+                                width="150px"
+                            />
+                        </Column>
+                        <Column>
+                            <Label
+                                text="Entered Material"
+                                width="150px"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Inactive">
+                            <cells>
+                                <ObjectIdentifier title="{listModel>Vbkur}" />
+                                <ObjectIdentifier title="{listModel>Vkgrp}" />
+                                <ObjectIdentifier title="{listModel>Regio}" />
+                                <ObjectIdentifier title="{listModel>Kunnr}" />
+                                <ObjectIdentifier
+                                    title="{listModel>ShipParty}"
+                                />
+                                <ObjectIdentifier
+                                    title="{listModel>Bstkd}"
+                                    text="{listModel>Bstdk}"
+                                />
+                                <VBox>
+                                    <Text text="{listModel>Vbeln}" />
+                                    <Text text="{listModel>Posnr}" />
+                                    <Text text="{listModel>Erdat}" />
+                                </VBox>
+                                <ObjectIdentifier
+                                    title="{listModel>Matnr}"
+                                    text="{listModel>Arktx}"
+                                />
+                                <ObjectIdentifier title="{listModel>Kwmeng}" />
+                                <ObjectIdentifier title="{listModel>Werks}" />
+                                <ObjectIdentifier title="{listModel>Kzwi1}" />
+                                <ObjectIdentifier title="{listModel>Name1}" />
+                                <ObjectIdentifier title="{listModel>Cname1}" />
+                                <ObjectIdentifier title="{listModel>Matwa}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

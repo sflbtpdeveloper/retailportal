@@ -1,0 +1,65 @@
+<mvc:View
+    controllerName="zretail_sfl.controller.OrderUpload"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+>
+    <Page id="OrderUpload">
+        <content>
+            <HBox
+                width="100%"
+                alignItems="Center"
+                justifyContent="SpaceBetween"
+            >
+                <Image
+                    src="/image/logo.png"
+                    alt="Company Logo"
+                    densityAware="false"
+                    width="4rem"
+                />
+                <VBox
+                    alignItems="Center"
+                    width="100%"
+                >
+                    <Title
+                        text="Sundram Fasteners Limited"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiMediumMarginTop customTitle"
+                    />
+                    <Title
+                        text="Order Upload"
+                        textAlign="Center"
+                        titleStyle="Auto"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                    />
+                </VBox>
+                <HBox width="4rem" />
+            </HBox>
+            <HBox width="100%" alignItems="Center">
+                <unified:FileUploader
+                    id="fileUploader"
+                    name="myFileUpload"
+                    change="onFileChange"
+                    width="150%"
+                    placeholder="Choose a file or drag and drop it here"
+                    fileType="xls,xlsx"
+                    buttonText="Browse File"
+                />
+                <Button
+                    id="btnRemove"
+                    icon="sap-icon://decline"
+                    press="onRemoveFile"
+                    visible="false"
+                    type="Transparent"
+                    tooltip="Remove file"
+                    width="3rem"
+                />
+            </HBox>
+            <Button
+                text="Upload"
+                press="onUploadPress"
+            />
+        </content>
+    </Page>
+</mvc:View>

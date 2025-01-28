@@ -1,0 +1,8 @@
+{
+    "items": [
+    { "key": "item1", "text": "Order Upload" },
+    { "key": "item2", "text": "GRN Upload" },     
+    { "key": "item2", "text": "Sales to Trade Upload" },     
+    { "key": "item2", "text": "Stock Upload" }           
+]    
+}
