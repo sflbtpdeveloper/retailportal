@@ -11,38 +11,10 @@ sap.ui.define([
             onInit: function (oFragment) {                
                 // this._startCarouselTimer(oFragment);
                 // this.startCarouselAutoSlide();
-
-                // const welcomeText = this.getView().byId( sFragmentId + "--welcomeText");                
-                // setTimeout(() => {
-                //     welcomeText.setText("Welcome to the Best Portal Experience!");
-                // }, 500);
-                
-                // this.typewriterEffect("Welcome to Sundram Fasteners Limited!");
-
+            
                 this.startFadeInOut();
-            },
-            typewriterEffect: function (textId, message) {
-              // const oText = this.byId(textId); // Reference to Text control
-              var sFragmentId = this._sFragmentUniqueId;
-              const oText = this.getView().byId( sFragmentId + "--welcomeText"); 
-              let index = 0;
-          
-              const type = () => {
-                  if (index < message.length) {
-                      oText.setText(oText.getText() + message.charAt(index));
-                      index++;
-                      setTimeout(type, 100); // Typing speed (100ms)
-                  } else {
-                      setTimeout(() => {
-                          oText.setText(""); // Clear text
-                          index = 0;
-                          type(); // Restart typing
-                      }, 2000); // Pause before restarting (2000ms)
-                  }
-              };
-          
-              type();
-          },            
+                this.startFadeInOut2();
+            },                    
             _startCarouselTimer: function (oFragment) {                
                 var sFragmentId = this._sFragmentUniqueId;
                 var oCarousel = this.getView().byId( sFragmentId + "--__productCarousel");
@@ -161,31 +133,13 @@ sap.ui.define([
             // },
             startFadeInOut: function (oFragment) {
               var aImagePaths = [
-                  // "/images/IMG_5041.jpg",
-                  // "/images/IMG_5634.jpg",
-                  // "/images/IMG_4933.jpg",
-                  // "/images/IMG_4954.jpg",
-                  // "/images/IMG_3718.jpg",
-                  // "/images/IMG_4784.jpg",
                   "/images/Black-Nut.jpg",
                   "/images/Bolt.jpg",                  
                   "/images/DSC03285.jpg",
                   "/images/IMG_0398.jpg",
-                  "/images/IMG_3883.jpg",
-                  // "/images/DSC03347.jpg", 
-                  // "/images/DSC03300.jpg", 
-                  // "/images/DSC03280.jpg", 
-                  // "/images/DSC03371.jpg",                  
+                  "/images/IMG_3883.jpg",                
               ];
-
-              // var aWelcomeMessages = [
-              //   "Welcome to Sundram Fasteners Limited!",
-              //   "Discover our Products!",
-              //   "Explore the highlights of our Products!",
-              //   "See our premium products!",
-              //   "Experience excellence with us!",
-              // ];              
-          
+                                  
               var sFragmentId = this._sFragmentUniqueId;
               var oImage =  this.getView().byId( sFragmentId + "--fadeImage");    
               // var oWelcomeText = this.getView().byId(sFragmentId + "--welcomeText");                         
@@ -204,7 +158,36 @@ sap.ui.define([
                 }
               }.bind(this), 3000); // 8 seconds per image
             }
-          }                          
+          },
+          startFadeInOut2: function (oFragment) {
+            var aImagePaths2 = [
+                "/images/csr1.jpg",
+                "/images/csr6.jpg",
+                "/images/csr7.jpg",
+                "/images/csr8.jpg",
+                "/images/csr9.jpg",
+                "/images/csr10.jpg",
+            ];
+                                
+            var sFragmentId2 = this._sFragmentUniqueId;
+            var oImage2 =  this.getView().byId( sFragmentId2 + "--fadeImage2");    
+            // var oWelcomeText = this.getView().byId(sFragmentId + "--welcomeText");                         
+            this._carouselIndex2 = 0;
+            var iTotalPages2 = aImagePaths2.length;
+            // Set the initial image
+            oImage2.setSrc(aImagePaths2[this._carouselIndex2]);
+            // oWelcomeText.setText(aWelcomeMessages[this._carouselIndex]);
+            if (iTotalPages2 > 1) {
+            // Cycle through images
+            setInterval(function () {
+              this._carouselIndex2 = (this._carouselIndex2 + 1) % iTotalPages2;  
+              const oNextPage2 = aImagePaths2[this._carouselIndex2];                 
+              if (oNextPage2) {              
+                oImage2.setSrc(oNextPage2);
+              }
+            }.bind(this), 3000); // 8 seconds per image
+          }
+        }                                      
               
               
        

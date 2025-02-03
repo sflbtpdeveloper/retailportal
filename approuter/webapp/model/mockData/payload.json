@@ -11,9 +11,16 @@
         "Poref" : "",
         "Podate" : "",
         "Partno" : "",
-        "Delyqty" : "",
+        "Delyqty" : ""              
+    },  
+    "UploadData":{
+        "Key" : "",
+        "Value" : "",
         "Bukrs" : "",
-        "Spart": ""                
-    },       
+        "Spart" : "",
+        "Upload" : "",
+        "Email" : ""                      
+    },    
+            
     "demo": "Welcome to TVS Next !!"  
 }

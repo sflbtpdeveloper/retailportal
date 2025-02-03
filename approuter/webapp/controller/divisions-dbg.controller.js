@@ -624,8 +624,8 @@ sap.ui.define([
         sControllerName = "zretail_sfl.fragments.GrnUpload";
       }
       else if (selectedRecord === 'Sales to Trade Upload') {
-        sFragmentName = "zretail_sfl.fragments.SalesToTrade";
-        sControllerName = "zretail_sfl.fragments.SalesToTrade";
+        sFragmentName = "zretail_sfl.fragments.TradeUpload";
+        sControllerName = "zretail_sfl.fragments.TradeUpload";
       }
       else if (selectedRecord === 'Stock Upload') {
         sFragmentName = "zretail_sfl.fragments.StkUpload";

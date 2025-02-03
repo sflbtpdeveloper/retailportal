@@ -11,12 +11,16 @@ modules:
     requires:
       - name: retail-xsuaa
       - name: retaildest
+        properties:
+          timeout: 600000       
       - name: retail-connectivity
+        properties:
+          timeout: 600000          
     provides:
       - name: node_api
         properties:
           url: "${default-url}"
-          forwardAuthToken: true
+          forwardAuthToken: true          
     parameters:
       disk-quota: 1G
       memory: 1G

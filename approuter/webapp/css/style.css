@@ -27,7 +27,7 @@
 }
 
 .companyHeading {
-  font-size: 30px !important;
+  font-size: 25px !important;
   /* Set the font size */
   font-weight: bold;
   /* Set the font weight */
@@ -544,8 +544,7 @@ Customcarousel1.carouselText {
   background-clip: border-box;
   background-size: 200% auto;
   color: #fff;
-  background-clip: text;
-  text-fill-color: transparent;
+  background-clip: text;  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 4s linear infinite;
@@ -1127,16 +1126,6 @@ body {
   /* Darker shade on hover */
 }
 
-.myWelcomeBackground {
-  background-image: url("/images/SFL.png");
-  background-size: cover;
-  /* Ensures the image covers the entire page */
-  background-position: center;
-  /* Centers the image */
-  background-repeat: no-repeat;
-  /* Prevents the image from repeating */
-}
-
 .portalImage {
   animation: fadeInOut 8s infinite;
   /* Adjust timing for fade effect */
@@ -1242,8 +1231,8 @@ body {
 .transparentTile:hover {
   transform: scale(1.05);
    /* Slightly increase opacity on hover  background-color: rgba(255, 255, 255, 0.4); */
-  background-color: #000080 !important;
-  color: white !important;
+  background-color: orange !important;
+  color: #000080 !important;
 }
 .transparentTile .sapMGTHeader {
   font-weight: bold !important;      /* Makes the text bold */
@@ -1267,11 +1256,11 @@ body {
   color: white !important;   
 }
 .transparentTile:hover .sapMGTHdrTxt>.sapMText {
-  color: white !important; 
+  color: #000080 !important; 
   font-weight: normal;
 }
 .transparentTile .sapMGTHdrTxt>.sapMText {
-  color: #000080 !important;
+  color: white !important;
   font-weight: normal;
   font-weight: bold !important;      /* Makes the text bold */
   font-size: 24px !important;        /* Sets a larger font size */
@@ -1379,3 +1368,52 @@ body {
   }
 }
 
+.bgVideo {
+  position: relative;
+  top: 0;
+  left: 0;  
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: -1;
+}
+.bgVideo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  background: url('/images/welcome.mp4') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+.videoBackground {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensure the video is behind the content */
+}
+.tileOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Brings the tiles on top of the video */
+}
+.boldTextInner {
+  font-weight: bold !important;
+}

@@ -199,14 +199,7 @@
                             class="customLink"
                             icon="sap-icon://log"
                             tooltip="Sign Out"
-                        />
-                        <!-- <Label text=" | " />
-                        <Link
-                            id="idLName2"
-                            text="{userModel>/user/given_name} {userModel>/user/family_name}"
-                            textAlign="Right"
-                            class="boldtext"
-                        /> -->
+                        />                       
                     </HBox>
                 </contentRight>
             </Bar>

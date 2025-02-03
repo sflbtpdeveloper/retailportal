@@ -93,30 +93,101 @@ sap.ui.define([
 
 
                 var reader = new FileReader();
+                var fileExt = this._file.name.split('.').pop().toLowerCase();
                 var that = this;
 
+                //29012025
+                var sFileType = this._file.type;
+                //29012025
+
                 reader.onload = function (e) {
-                    var data = new Uint8Array(e.target.result);
-                    var workbook = XLSX.read(data, { type: 'array' });
+                    var data = e.target.result;
+                    var workbook;
 
-                    // Assuming the data is in the first sheet
-                    var firstSheetName = workbook.SheetNames[0];
-                    var worksheet = workbook.Sheets[firstSheetName];
-                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    try {
+                        if (fileExt === "xls") {
+                            // Convert ArrayBuffer to Binary String for .xls files
+                            var binary = "";
+                            var bytes = new Uint8Array(data);
+                            for (var i = 0; i < bytes.byteLength; i++) {
+                                binary += String.fromCharCode(bytes[i]);
+                            }
+                            workbook = XLSX.read(binary, { type: 'binary' });
+                        } else if (fileExt === "xlsx") {
+                            // Use Uint8Array directly for .xlsx files
+                            workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+                        } else {
+                            sap.m.MessageToast.show("Invalid file format.");
+                            return;
+                        }
 
+                        var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                        var jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                        console.log(jsonData); // Process the data
+                        var uploadType = that._validateHeaders(jsonData[0]);
+                        debugger;
+                        if (uploadType !== "OrderUpload") {
+                            MessageBox.error("Invalid file format. Please upload a correct file.");
+                            return;
+                        }
+                        // Now send jsonData to the OData service
+                        that._sendDataToOData(jsonData);
+                        // Reset the file input after processing
+                        that._resetFileUploader();
 
-                    var uploadType = that._validateHeaders(jsonData[0]);
-
-                    debugger;
-                    if (uploadType !== "OrderUpload") {
-                        MessageBox.error("Invalid file format. Please upload a correct file.");
-                        return;
+                    } catch (error) {
+                        console.error("Error reading file:", error);
+                        sap.m.MessageToast.show("Error reading file: " + error.message);
                     }
-                    // Now send jsonData to the OData service
-                    that._sendDataToOData(jsonData);
-                    // Reset the file input after processing
-                    that._resetFileUploader();
                 };
+
+                // reader.onload = function (e) {
+                //     // var data = new Uint8Array(e.target.result);
+                //     var data;
+                //     if (sFileType === "application/vnd.ms-excel") {
+                //         // Use XLS for .xls files
+                //         data = new Uint8Array(e.target.result);
+                //     } else {
+                //         // Use XLSX for .xlsx files
+                //         data = new Uint8Array(e.target.result);
+                //     }
+
+                //     // var workbook = XLSX.read(data, { type: 'array' });
+                //     var workbook;
+                //     if (sFileType === "application/vnd.ms-excel") {
+                //         // Use XLS for .xls files
+                //         workbook = XLSX.read(data, { type: 'binary' });
+                //     } else {
+                //         // Use XLSX for .xlsx files
+                //         workbook = XLSX.read(data, { type: 'array' });
+                //     }
+
+                //     // Assuming the data is in the first sheet
+                //     var firstSheetName = workbook.SheetNames[0];
+                //     var worksheet = workbook.Sheets[firstSheetName];
+
+                //     // var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                //     var jsonData;
+                //     if (sFileType === "application/vnd.ms-excel") {
+                //         // Use XLS for .xls files
+                //         jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                //     } else {
+                //         // Use XLSX for .xlsx files
+                //         jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                //     }
+
+                //     var uploadType = that._validateHeaders(jsonData[0]);
+
+                //     debugger;
+                //     if (uploadType !== "OrderUpload") {
+                //         MessageBox.error("Invalid file format. Please upload a correct file.");
+                //         return;
+                //     }
+                //     // Now send jsonData to the OData service
+                //     that._sendDataToOData(jsonData);
+                //     // Reset the file input after processing
+                //     that._resetFileUploader();''
+                // };
 
                 reader.readAsArrayBuffer(this._file);
             },
@@ -132,7 +203,7 @@ sap.ui.define([
                 var stockUploadHeaders = [
                     "Plant", "Material", "Quantity", "Remarks"
                 ];
-               debugger;
+                debugger;
                 // Check if uploaded file headers match any of the predefined formats
                 if (this._compareHeaders(headers, orderUploadHeaders)) {
                     return "OrderUpload";
@@ -216,6 +287,11 @@ sap.ui.define([
                 let oEntry = {};
                 let vEntry = {};
 
+                // let oModel = this.getOwnerComponent().getModel("orderUploadModel");
+                // this.getView().setModel(oModel);
+                var oPayload = this._localModel.getProperty("/UploadData");
+
+
                 // // Retrieve selected division and tile selection from local storage
                 const divisionData = JSON.parse(localStorage.getItem("divisionData")) || {};
                 // Extract the relevant data
@@ -253,6 +329,14 @@ sap.ui.define([
                 oEntry.Upload = 'ORDER';
                 oEntry.Email = sEmail;
 
+                oPayload.Key = "X";
+                oPayload.Value = encoded;
+                oPayload.Bukrs = bukrs;
+                oPayload.Spart = spart;
+                oPayload.Upload = 'ORDER';
+                oPayload.Email = sEmail;
+
+
                 vEntry.Value = encoded;
                 vEntry.Bukrs = bukrs;
                 vEntry.Spart = spart;
@@ -277,17 +361,51 @@ sap.ui.define([
                 debugger;
 
                 //Changes done on 02.01.2025                
-                oModel.create("/ysd_retail_sojSet", oEntry, {
-                    method: "POST",
-                    success: function () {
-                        // MessageToast.show("Entry uploaded successfully.");
-                        sap.m.MessageBox.success("Uploaded successfully.");
+                // oModel.create("/ysd_retail_sojSet", oEntry, {
+                //     method: "POST",
+                //     success: function () {
+                //         // MessageToast.show("Entry uploaded successfully.");
+                //         sap.m.MessageBox.success("Uploaded successfully.");
+                //     },
+                //     error: function (oError) {
+                //         console.error("Error uploading entry:", oError);
+                //         // MessageToast.show("Upload Failed");
+                //         sap.m.MessageBox.error("Upload Failed");
+                //     }
+                // });
+
+                this._saveOrderUpload(oPayload);
+            },
+            _saveOrderUpload: async function (oPayload) {
+                debugger;
+                sap.ui.core.BusyIndicator.show();
+                // POST request to create ASN            
+                $.ajax({
+                    url: "/nodeapp/SaveOrder",
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(oPayload),
+                    headers: {
+                        // "X-CSRF-Token": csrfToken,
+                        "Content-Type": "application/json",
                     },
-                    error: function (oError) {
-                        console.error("Error uploading entry:", oError);
-                        // MessageToast.show("Upload Failed");
-                        sap.m.MessageBox.error("Upload Failed");
-                    }
+                    success: async function (oData) {
+                        debugger;
+                        sap.ui.core.BusyIndicator.hide();
+                        sap.m.MessageBox.success("Uploaded successfully.");
+                    }.bind(this),
+                    error: function (oErr) {
+                        debugger;
+                        sap.ui.core.BusyIndicator.hide();
+                        var statusCode = oErr.status;
+                        var statusText = oErr.statusText;
+                        var responseText = oErr.responseText;
+                        MessageBox.error(
+                            "Upload Failed" +
+                            "Status: " + statusCode + " (" + statusText + ")\n" +
+                            "Details: " + responseText
+                        );
+                    }.bind(this)
                 });
             },
             onDownloadTemplate: async function () {

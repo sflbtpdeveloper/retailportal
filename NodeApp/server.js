@@ -17,11 +17,19 @@ const crypto = require("crypto");                       // generating secure tok
 const XLSX = require('xlsx');
 const fs = require('fs');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 
 const PORT = process.env.PORT || 8082;
 
 const axios1 = SapCfAxios("SFD_HTTPS");
+
+// Set body-parser limit to handle larger payloads
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+app.use(express.json({ limit: "50mb" })); 
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 //---------------------------------------------------------------------
 //  fetch data for getting Vendor Details 
@@ -693,11 +701,6 @@ app.get('/OU_downloadTemplate', (req, res) => {
       "DOCTYPE", "SALES ORG", "DIST CH", "DIVN",
       "SOLD TO", "SHIP TO", "PO REF",
       "PO DATE(DD.MM.YYYY)", "PARTNO", "DELY QTY"
-    ],
-    [
-      "ZORD", 6000, 80, "00",
-      "MTSNMK", "MTSNMK", "14807095/123500",
-      "19.09.2024", "WPA671", 10
     ]
   ];
 
@@ -1034,6 +1037,267 @@ app.post("/ordval", passport.authenticate("JWT", { session: false }), async (req
 
   }
 });
+
+//---------------------------------------------------------------------
+// POST ORDER UPLOAD endpoint with token revocation and CSRF validation
+//---------------------------------------------------------------------
+app.post("/SaveOrder", passport.authenticate("JWT", { session: false }), async (req, res) => {
+  console.log("Hitting - node server Order Upload post call");
+  console.log("SaveOrder req details", req);
+  const records = req.body
+  const payloadSize = Buffer.byteLength(JSON.stringify(records), 'utf8');
+  console.log(`Payload Size: ${payloadSize} bytes`);  
+  console.log("Data being sent to OData service befor get call:", records);
+
+
+  const csrfResponse = await axios1({
+    method: "GET",
+    url: "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/",
+    headers: {
+      'x-csrf-token': 'Fetch',  // Request a new CSRF token      
+      "content-type": "application/json",
+      "sap-client": "999",      
+      // 'Authorization': `Bearer ${jwtToken}`
+    },
+    withCredentials: true
+  });
+  const cookies = csrfResponse.headers['set-cookie'];
+  console.log("Set-Cookie headers:", cookies);
+  console.log("CSRF Response Headers:", csrfResponse.headers);
+  console.log("Request Headers:", req.headers);
+  console.log("Request User :", req.user);
+  const csrfToken = csrfResponse.headers['x-csrf-token'];
+  const data = req.body
+  console.log("Data being sent to OData service:", data);
+  const token = req.headers.authorization?.split(' ')[1];
+  // const csrfToken = req.headers['x-csrf-token'];
+  const storedToken = csrfTokens[req.user.id];
+  console.log("Received JWT Token (Server-side):", token);
+  console.log("Received CSRF Token (Server-side):", csrfToken);  // Log the token from request
+  console.log("Expected CSRF Token (Server-side):", storedToken);
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized: No token provided." });
+  }
+  try {
+    const response = await axios1({
+      method: "POST",
+      url: "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/ysd_retail_sojSet",
+      headers: {
+        'X-CSRF-Token': csrfToken,
+        "content-type": "application/json; charset=UTF-8",
+        "sap-client": "999",        
+        'Authorization': `Bearer ${token}`,
+        'Cookie': cookies.join('; ')
+      },
+      data: data,
+      timeout: 600000,
+      withCredentials: true
+    });
+    res.status(200).json(response.data);
+    console.log("response data :", response.data);
+
+  } catch (error) {
+    // console.error("CSRF token expired, refreshing token and retrying...");      
+    const detailedErrorMessage = {
+      message: "Error calling SAP OData service",
+      status: error.response ? error.response.status : "N/A",
+      statusText: error.response ? error.response.statusText : "N/A",
+      data: error.response ? error.response.data : null,
+      request: {
+        method: error.request ? error.request.method : "N/A",
+        url: error.request ? error.request.url : "N/A",
+        headers: error.request ? error.request.headers : {},
+      },
+      originalError: error.message // Keep the original error message
+    };
+
+    console.error("Detailed Error:", JSON.stringify(detailedErrorMessage, null, 2));
+    res.status(500).json({ message: "Failed to call SAP OData service.", error: detailedErrorMessage });
+
+  }
+});
+//---------------------------------------------------------------------
+// Order Upload Template 
+//---------------------------------------------------------------------
+app.get('/TR_downloadTemplate', (req, res) => {
+  // Define the Excel data
+  const data = [
+    [
+        "Distributor", "Distributor Invoice", "Distributor Branch", "Dealer Name",
+        "Dealer GST", "Dealer City", "Invoice Date", "Material",
+        "Ordered Qty", "List Value by Distributor", "Created On", "Created By"
+    ]
+];
+  // Create a workbook
+  const wb = XLSX.utils.book_new();
+
+  // Add data to the workbook
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  XLSX.utils.book_append_sheet(wb, ws, "Template");
+
+  // Define the file path
+  const filePath = path.join(__dirname, 'template.xlsx');
+
+  // Write the file
+  XLSX.writeFile(wb, filePath);
+
+  // Serve the file for download
+  res.download(filePath, 'TradeUploadTemplate.xlsx', (err) => {
+    if (err) {
+      console.error("Error while downloading template:", err);
+    }
+    // Delete the file after serving
+    fs.unlinkSync(filePath);
+  });
+});
+
+//---------------------------------------------------------------------
+// Sales to Trade Download Error Template 
+//---------------------------------------------------------------------
+
+app.post('/TR_downloadError', (req, res) => {
+  const errors = req.body.errors;
+
+  console.log("Error data received in Node.js:", errors);
+
+  // Define the header row
+  const header = [
+    "DISTRIBUTOR", "DISTRIBUTOR_INVOICE", "DISTRIBUTOR_BRANCH", 
+    "DEALER_NAME", "DEALER_GST", "DEALER_CITY", 
+    "INVOICE_DATE", "MATERIAL", "ORDERED_QTY", 
+    "LIST_VALUE_BY_DISTRIBUTOR", "CREATED_ON", "CREATED_BY"
+  ];
+
+  // Map errors to rows
+  const excelData = [header]; // Include header row as the first row
+  errors.forEach((error) => {
+    if (typeof error === "object" && error !== null) {
+      // Add the error fields in the same order as the header
+      const row = [
+        error.DISTRIBUTOR || "",
+        error.DISTRIBUTOR_INVOICE || "",
+        error.DISTRIBUTOR_BRANCH || "",
+        error.DEALER_NAME || "",
+        error.DEALER_GST || "",
+        error.DEALER_CITY || "",
+        error.INVOICE_DATE || "",
+        error.MATERIAL || "",
+        error.ORDERED_QTY || "",
+        error.LIST_VALUE_BY_DISTRIBUTOR || "",
+        error.CREATED_ON || "",
+        error.CREATED_BY || ""
+      ];
+      excelData.push(row);
+    }
+  });
+
+  // Create an Excel workbook
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(excelData); // Convert data to worksheet
+  XLSX.utils.book_append_sheet(wb, ws, "Validation Errors");
+
+  // Define the file path
+  const filePath = path.join(__dirname, 'TradeToSalesError.xlsx');
+
+  // Write the Excel file
+  XLSX.writeFile(wb, filePath);
+
+  // Serve the file for download
+  res.download(filePath, 'TradeToSalesError.xlsx', (err) => {
+    if (err) {
+      console.error("Error while downloading the file:", err);
+    }
+    // Delete the temporary file after sending the response
+    fs.unlink(filePath, (unlinkErr) => {
+      if (unlinkErr) {
+        console.error("Error deleting temporary file:", unlinkErr);
+      }
+    });
+  });
+});
+
+//---------------------------------------------------------------------
+// Sale To Order UPLOAD endpoint with token revocation and CSRF validation
+//---------------------------------------------------------------------
+app.post("/S2TUpload", passport.authenticate("JWT", { session: false }), async (req, res) => {
+  console.log("Hitting - node server Order Upload post call");
+  console.log("S2TUpload req details", req);
+  const records = req.body
+  const payloadSize = Buffer.byteLength(JSON.stringify(records), 'utf8');
+  console.log(`Payload Size: ${payloadSize} bytes`);  
+  console.log("Data being sent to OData service befor get call:", records);
+
+
+  const csrfResponse = await axios1({
+    method: "GET",
+    url: "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/",
+    headers: {
+      'x-csrf-token': 'Fetch',  // Request a new CSRF token      
+      "content-type": "application/json",
+      "sap-client": "999",      
+      // 'Authorization': `Bearer ${jwtToken}`
+    },
+    withCredentials: true
+  });
+  const cookies = csrfResponse.headers['set-cookie'];
+  console.log("Set-Cookie headers:", cookies);
+  console.log("CSRF Response Headers:", csrfResponse.headers);
+  console.log("Request Headers:", req.headers);
+  console.log("Request User :", req.user);
+  const csrfToken = csrfResponse.headers['x-csrf-token'];
+  const data = req.body
+  console.log("Data being sent to OData service:", data);
+  const token = req.headers.authorization?.split(' ')[1];
+  // const csrfToken = req.headers['x-csrf-token'];
+  const storedToken = csrfTokens[req.user.id];
+  console.log("Received JWT Token (Server-side):", token);
+  console.log("Received CSRF Token (Server-side):", csrfToken);  // Log the token from request
+  console.log("Expected CSRF Token (Server-side):", storedToken);
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized: No token provided." });
+  }
+  try {
+    const response = await axios1({
+      method: "POST",
+      url: "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/YSD_RETAIL_TRADESet",
+      headers: {
+        'X-CSRF-Token': csrfToken,
+        "content-type": "application/json; charset=UTF-8",
+        "sap-client": "999",        
+        'Authorization': `Bearer ${token}`,
+        'Cookie': cookies.join('; ')
+      },
+      data: data,
+      timeout: 600000,
+      withCredentials: true
+    });
+    res.status(200).json(response.data);
+    console.log("response data :", response.data);
+
+  } catch (error) {
+    // console.error("CSRF token expired, refreshing token and retrying...");      
+    const detailedErrorMessage = {
+      message: "Error calling SAP OData service",
+      status: error.response ? error.response.status : "N/A",
+      statusText: error.response ? error.response.statusText : "N/A",
+      data: error.response ? error.response.data : null,
+      request: {
+        method: error.request ? error.request.method : "N/A",
+        url: error.request ? error.request.url : "N/A",
+        headers: error.request ? error.request.headers : {},
+      },
+      originalError: error.message // Keep the original error message
+    };
+
+    console.error("Detailed Error:", JSON.stringify(detailedErrorMessage, null, 2));
+    res.status(500).json({ message: "Failed to call SAP OData service.", error: detailedErrorMessage });
+
+  }
+});
+
+
 //---------------------------------------------------------------------
 // Start the app
 //---------------------------------------------------------------------

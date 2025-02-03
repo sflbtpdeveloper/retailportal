@@ -2,7 +2,8 @@ sap.ui.define([
   'zretail_sfl/controller/BaseController',
   "sap/ui/core/Fragment",
   'sap/m/MessageBox',
-], function (BaseController, Fragment, MessageBox) {
+  "sap/ui/core/HTML"
+], function (BaseController, Fragment, MessageBox, HTML) {
   'use strict';
   return BaseController.extend("zretail_sfl.controller.welcome", {
 
@@ -10,6 +11,7 @@ sap.ui.define([
     selectedTplTile: false,
 
     onInit: async function () {
+     
       this.oRouter = this.getOwnerComponent().getRouter();
       this.oRouter.getRoute("RouteView1").attachPatternMatched(this._onObjectMatched, this);
 
@@ -48,7 +50,7 @@ sap.ui.define([
         const sEmail = userData.email;
 
         // Make AJAX call to fetch AccCont data
-       response = await $.ajax({
+        response = await $.ajax({
           url: "/nodeapp/accCont", // Your custom backend route
           method: "GET",          // Use GET since you're retrieving data
           contentType: "application/json",
@@ -112,7 +114,7 @@ sap.ui.define([
       const imageMap = {
         "Autolec": "images/AUTOLEC.jpg",
         "Fd": "images/hightensil.png",
-        "Rca": "images/hot_forged.jpg", 
+        "Rca": "images/hot_forged.jpg",
       };
       const oHBox = this.byId("tileContainer");
       oHBox.removeAllItems();
@@ -122,7 +124,7 @@ sap.ui.define([
         2: "L6 M6 S12",
         3: "L4 M6 S12",
       };
-      const defaultSpan = spanMapping[availableDivisions.length] || "L4 M6 S12";      
+      const defaultSpan = spanMapping[availableDivisions.length] || "L4 M6 S12";
       // Dynamically create GenericTiles for each available division
       const oGrid = new sap.ui.layout.Grid({
         defaultSpan: defaultSpan, // Set grid responsiveness
@@ -146,18 +148,18 @@ sap.ui.define([
           // Apply background image dynamically
           oTile.addDelegate({
             onAfterRendering: function () {
-              const tileDomRef = oTile.getDomRef();             
+              const tileDomRef = oTile.getDomRef();
             },
           });
 
           return oTile;
-        
+
         }),
       });
 
       // Add the Grid to your container
       oHBox.addItem(oGrid);
-     
+
       // Set HBox layout properties to make the tiles display neatly
       oHBox.setLayoutData(new sap.ui.layout.GridData({
         span: "L4 M6 S12"  // Adjust column span for different screen sizes
@@ -182,8 +184,28 @@ sap.ui.define([
         onmouseover: this.onProfileHover.bind(this), // Call hover function
         onmouseout: this.onProfileMouseOut.bind(this), // Handle mouse out
       });
-    },
 
+      // Add video background dynamically after fetching data
+      this._addVideoBackground();
+
+    },
+    _addVideoBackground: function () {
+      // Add the video element dynamically
+      const oContainer = this.getView().byId("videoContainer");
+      oContainer.setHeight("100vh");  // Ensure the container height is set
+      debugger;
+      // HTML content for the video    
+            var oHtml = new sap.ui.core.HTML({ 
+              content: '<video autoplay muted loop id="myVideo">' +
+                       '<source src="images/welcome.mp4" type="video/mp4">' +
+                       'Your browser does not support the video tag.' +
+                       '</video>'
+          });            
+
+      // Add the video element to the container
+      oContainer.addItem(oHtml);
+      oContainer.addStyleClass("bgVideo");
+    },
     onBeforeRendering: function () {
       if (this.oRouter) {
         // Detach PatternMatched before re-rendering

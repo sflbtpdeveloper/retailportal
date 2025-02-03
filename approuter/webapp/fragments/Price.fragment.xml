@@ -65,6 +65,9 @@
                         <Label text="Material Number" />
                     </Column>
                     <Column>
+                        <Label text="Material Description" />
+                    </Column>
+                    <Column>
                         <Label text="Price" />
                     </Column>
                     <Column>
@@ -81,6 +84,7 @@
                     <ColumnListItem type="Inactive">
                         <cells>
                             <ObjectIdentifier title="{listModel>Matnr}" />
+                            <ObjectIdentifier title="{listModel>Maktx}" />
                             <ObjectIdentifier title="{listModel>Kbetr}" />
                             <ObjectIdentifier title="{listModel>Kpein}" />
                             <ObjectIdentifier title="{listModel>Kmein}" />

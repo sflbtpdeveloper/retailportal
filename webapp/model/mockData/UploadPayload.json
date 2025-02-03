@@ -1,0 +1,15 @@
+{
+
+   
+    "UploadData":{
+        "Asnno" : "",
+        "Lifnr" : "",
+        "Werks" : "",
+        "Matnr" : "",
+        "Ebeln" : "",
+        "Ebelp" : "",
+        "Dcno" : ""                
+    },   
+
+    "demo": "Welcome to TVS Next !!"  
+}

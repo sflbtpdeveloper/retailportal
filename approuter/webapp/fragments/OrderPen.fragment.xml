@@ -107,7 +107,7 @@
                 items="{listModel>/}"
                 growing="true"
                 growingThreshold="20"
-                fixedLayout="false"                
+                fixedLayout="false"
                 width="auto"
                 class="customTableHeader"
             >
@@ -116,16 +116,31 @@
                         <Label text="Sales Office" />
                     </Column>
                     <Column>
+                        <Label text="Sales Office Desc" />
+                    </Column>
+                    <Column>
                         <Label text="Sales Group" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Group Desc" />
                     </Column>
                     <Column>
                         <Label text="Region" />
                     </Column>
                     <Column>
+                        <Label text="Region Desc" />
+                    </Column>
+                    <Column>
                         <Label text="Sold-to Party" />
                     </Column>
                     <Column>
+                        <Label text="Sold-to Party Name" />
+                    </Column>
+                    <Column>
                         <Label text="Ship-to Party" />
+                    </Column>
+                    <Column>
+                        <Label text="Ship-to Party Name" />
                     </Column>
                     <Column>
                         <Label
@@ -150,12 +165,6 @@
                     </Column>
                     <Column>
                         <Label text="Pending Values(in Lakhs)" />
-                    </Column>
-                    <Column>
-                        <Label text="Sold-to Party Name" />
-                    </Column>
-                    <Column>
-                        <Label text="Ship-to Party Name" />
                     </Column>
                     <Column>
                         <Label text="Pending for invoice qty" />
@@ -183,18 +192,38 @@
                     <ColumnListItem>
                         <cells>
                             <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vbkurt}" />
+
                             <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Vkgrpt}" />
+
                             <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Regiot}" />
+
                             <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>Cname1}" />
+
                             <ObjectIdentifier title="{listModel>Kunrg}" />
+                            <ObjectIdentifier title="{listModel>Name1}" />
+
                             <ObjectIdentifier
                                 title="{listModel>Bstkd}"
                                 text="{listModel>Bstdk}"
+                                class="boldtext"
                             />
                             <VBox>
-                                <Text text="{listModel>Vbeln}" />
-                                <Text text="{listModel>Posnr}" />
-                                <Text text="{listModel>Erdat}" />
+                                <Text
+                                    text="{listModel>Vbeln}"
+                                    class="boldtext"
+                                />
+                                <Text
+                                    text="{listModel>Posnr}"
+                                    class="boldtext"
+                                />
+                                <Text
+                                    text="{listModel>Erdat}"
+                                    class="boldtext"
+                                />
                                 <!-- <Text
                                     text="{path: 'listModel>Erdat', formatter: '.formatDate'}"
                                 /> -->
@@ -203,17 +232,20 @@
                             <ObjectIdentifier
                                 title="{listModel>Matnr}"
                                 text="{listModel>Maktx}"
+                                class="boldtext"
                             />
                             <!-- <ObjectIdentifier title="{listModel>Omeng}" /> -->
                             <ObjectIdentifier
                                 title="{parts: [{path: 'listModel>Omeng'}], 
                                                       formatter: '.formatter.formatInteger'}"
                             />
-                            <ObjectIdentifier
-                                title="{path: 'listModel>Kbetr', formatter: '.formatter.formatToTwoDecimals'}"
-                            />
-                            <ObjectIdentifier title="{listModel>Cname1}" />
-                            <ObjectIdentifier title="{listModel>Name1}" />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{path: 'listModel>Kbetr', formatter: '.formatter.formatToTwoDecimals'}"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>Lfimg}" /> -->
                             <ObjectIdentifier
                                 title="{parts: [{path: 'listModel>Lfimg'}], 
@@ -233,13 +265,21 @@
                                 title="{parts: [{path: 'listModel>TPending'}], formatter: '.formatter.formatInteger'}"
                             />
                             <!-- <ObjectIdentifier title="{listModel>Ovalue}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Ovalue', formatter: '.formatter.formatToTwoDecimals' }"
+                            <HBox justifyContent="End">
+                            <Text
+                                text="{ path: 'listModel>Ovalue', formatter: '.formatter.formatToTwoDecimals' }"
+                                textAlign="End"
+                                class="boldtext"
                             />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>Dvalue}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Dvalue', formatter: '.formatter.formatToTwoDecimals' }"
+                            <HBox justifyContent="End">
+                            <Text
+                                text="{ path: 'listModel>Dvalue', formatter: '.formatter.formatToTwoDecimals' }"
+                                textAlign="End"
+                                class="boldtext"
                             />
+                            </HBox>
                             <ObjectIdentifier title="{listModel>Matent}" />
                         </cells>
                     </ColumnListItem>

@@ -120,20 +120,44 @@
                 class="customTableHeader"
             >
                 <columns>
-                    <Column>
+                    <!-- <Column>
                         <Label text="Sales Office" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Office Desc" />
                     </Column>
                     <Column>
                         <Label text="Sales Group" />
                     </Column>
                     <Column>
+                        <Label text="Sales Group Desc" />
+                    </Column>
+                    <Column>
                         <Label text="Region" />
+                    </Column>
+                    <Column>
+                        <Label text="Region Desc" />
+                    </Column> -->
+                    <Column>
+                        <Label text="Plant" />
                     </Column>
                     <Column>
                         <Label text="Sold-to-Party" />
                     </Column>
                     <Column>
+                        <Label
+                            text="Sold-to-Party Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
                         <Label text="Ship-to-Party" />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Ship-to-Party Name"
+                            width="150px"
+                        />
                     </Column>
                     <Column>
                         <Label text="PO Reference / PO Date" />
@@ -153,72 +177,79 @@
                             width="100px"
                         />
                     </Column>
-                    <Column>
-                        <Label text="Plant" />
-                    </Column>
+
                     <Column>
                         <Label
                             text="Sales Value"
                             width="100px"
                         />
                     </Column>
-                    <Column>
-                        <Label
-                            text="Sold-to-Party Name"
-                            width="150px"
-                        />
-                    </Column>
-                    <Column>
-                        <Label
-                            text="Ship-to-Party Name"
-                            width="150px"
-                        />
-                    </Column>
-                    <Column>
+
+                    <!-- <Column>
                         <Label
                             text="Entered Material"
                             width="150px"
                         />
-                    </Column>
+                    </Column> -->
                 </columns>
                 <items>
                     <ColumnListItem type="Inactive">
                         <cells>
-                            <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <!-- <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vbkurt}" />
+
                             <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Vkgrpt}" />
+
                             <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Regiot}" /> -->
+
+                            <ObjectIdentifier title="{listModel>Werks}" />
+
                             <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>Name1}" />
+
                             <ObjectIdentifier title="{listModel>ShipParty}" />
+                            <ObjectIdentifier title="{listModel>Cname1}" />
+
                             <ObjectIdentifier
                                 title="{listModel>Bstkd}"
                                 text="{listModel>Bstdk}"
+                                class="boldTextInner"
                             />
+
                             <VBox>
                                 <ObjectIdentifier title="{listModel>Vbeln}" />
                                 <!-- <Text text="{listModel>Posnr}" /> -->
                                 <Text
                                     text="{parts: [{path: 'listModel>Posnr'}], formatter: '.formatter.removeLeadingZeros'}"
+                                    class="boldtext"
                                 />
-                                <Text text="{listModel>Erdat}" />
+                                <Text
+                                    text="{listModel>Erdat}"
+                                    class="boldtext"
+                                />
                                 <!-- <Text text="{path: 'listModel>Erdat', formatter: '.formatter.formatDate'}" /> -->
                             </VBox>
                             <ObjectIdentifier
                                 title="{listModel>Matnr}"
                                 text="{listModel>Arktx}"
+                                class="boldTextInner"
                             />
                             <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
                             <ObjectIdentifier
                                 title="{parts: [{path: 'listModel>Kwmeng'}], 
                                                       formatter: '.formatter.formatInteger'}"
                             />
-                            <ObjectIdentifier title="{listModel>Werks}" />
+
                             <!-- <ObjectIdentifier title="{listModel>Kzwi1}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Kzwi1', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
-                            <ObjectIdentifier title="{listModel>Name1}" />
-                            <ObjectIdentifier title="{listModel>Cname1}" />
-                            <ObjectIdentifier title="{listModel>Matwa}" />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>Kzwi1', formatter: '.formatter.formatToTwoDecimals' }"
+                                    class="boldtext"
+                                />
+                            </HBox>
+                            <!-- <ObjectIdentifier title="{listModel>Matwa}" /> -->
                         </cells>
                     </ColumnListItem>
                 </items>

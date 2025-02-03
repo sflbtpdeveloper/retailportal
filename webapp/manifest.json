@@ -76,8 +76,16 @@
           "json": true,
           "useBatch": false,
           "serviceUrl": "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/"
-        }
+        }     
       },
+      "orderUploadService": {
+        "uri": "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/",
+        "type": "OData",
+        "settings": {
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },       
       "local": {
         "type": "sap.ui.model.json.JSONModel",
         "settings": {},
@@ -151,6 +159,18 @@
           "selectedTplTile": false
         }
       },      
+      "orderUploadModel": {
+        "dataSource": "orderUploadService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
       "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/i18n.properties"

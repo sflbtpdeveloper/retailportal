@@ -116,10 +116,19 @@
                         <Label text="Sales Office" />
                     </Column>
                     <Column>
+                        <Label text="Sales Office Desc" />
+                    </Column>
+                    <Column>
                         <Label text="Sales Group" />
                     </Column>
                     <Column>
+                        <Label text="Sales Group Desc" />
+                    </Column>
+                    <Column>
                         <Label text="Region" />
+                    </Column>
+                    <Column>
+                        <Label text="Region Desc" />
                     </Column>
                     <Column>
                         <Label
@@ -135,8 +144,20 @@
                     </Column>
                     <Column>
                         <Label
+                            text="Sold to Name"
+                            width="150px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
                             text="Ship To"
                             width="100px"
+                        />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Ship to Name"
+                            width="150px"
                         />
                     </Column>
                     <Column>
@@ -190,18 +211,6 @@
                         <Label text="Invoice Value" />
                     </Column>
                     <Column>
-                        <Label
-                            text="Sold to Name"
-                            width="150px"
-                        />
-                    </Column>
-                    <Column>
-                        <Label
-                            text="Ship to Name"
-                            width="150px"
-                        />
-                    </Column>
-                    <Column>
                         <Label text="IGST Amount" />
                     </Column>
                     <Column>
@@ -210,12 +219,12 @@
                     <Column>
                         <Label text="CGST Amount" />
                     </Column>
-                    <Column>
+                    <!-- <Column>
                         <Label
                             text="Plant Name"
                             width="150px"
                         />
-                    </Column>
+                    </Column> -->
                     <Column>
                         <Label text="No. of Packs" />
                     </Column>
@@ -242,33 +251,60 @@
                     <ColumnListItem>
                         <cells>
                             <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <ObjectIdentifier title="{listModel>Vbkurt}" />
+
                             <ObjectIdentifier title="{listModel>Vkgrp}" />
+                            <ObjectIdentifier title="{listModel>Vkgrpt}" />
+
                             <ObjectIdentifier title="{listModel>Regio}" />
+                            <ObjectIdentifier title="{listModel>Regiot}" />
+
                             <ObjectIdentifier title="{listModel>Ort01}" />
+
                             <ObjectIdentifier title="{listModel>Kunnr}" />
+                            <ObjectIdentifier title="{listModel>SoName}" />
+
                             <ObjectIdentifier title="{listModel>ShipParty}" />
+                            <ObjectIdentifier title="{listModel>ShName}" />
+
                             <ObjectIdentifier
                                 title="{listModel>Bstkd}"
                                 text="{listModel>Bstdk}"
+                                class="boldtext"
                             />
                             <VBox>
-                                <Text text="{listModel>SoNo}" />
-                                <Text text="{listModel>Posnr}" />
-                                <Text text="{listModel>SoDt}" />
+                                <Text
+                                    text="{listModel>SoNo}"
+                                    class="boldtext"
+                                />
+                                <Text
+                                    text="{listModel>Posnr}"
+                                    class="boldtext"
+                                />
+                                <Text
+                                    text="{listModel>SoDt}"
+                                    class="boldtext"
+                                />
                             </VBox>
                             <ObjectIdentifier
                                 title="{listModel>InvNo}"
                                 text="{listModel>InvDat}"
+                                class="boldtext"
                             />
                             <!-- <ObjectIdentifier title="{listModel>SalVal}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>SalVal', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
-
-                            <ObjectIdentifier title="{listModel>Werks}" />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>SalVal', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
+                            <ObjectIdentifier title="{listModel>Werks}" 
+                                              text ="{listModel>Pname}"/>
                             <ObjectIdentifier
                                 title="{listModel>Matnr}"
                                 text="{listModel>Arktx}"
+                                class="boldtext"
                             />
                             <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
                             <ObjectIdentifier
@@ -286,42 +322,64 @@
                             />
                             <ObjectIdentifier title="{listModel>Stname}" />
                             <!-- <ObjectIdentifier title="{listModel>InvVal}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>InvVal', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
-
-                            <ObjectIdentifier title="{listModel>SoName}" />
-                            <ObjectIdentifier title="{listModel>ShName}" />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>InvVal', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>Igst}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Igst', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
-
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>Igst', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>Sgst}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Sgst', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>Sgst', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>Cgst}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Cgst', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
-                            <ObjectIdentifier title="{listModel>Pname}" />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>Cgst', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
+                            <!-- <ObjectIdentifier title="{listModel>Pname}" /> -->
                             <!-- <ObjectIdentifier title="{listModel>Nop}" /> -->
-                            <ObjectIdentifier title="{parts: [{path: 'listModel>Nop'}], 
-                                                      formatter: '.formatter.formatInteger'}"/>                             
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Nop'}], 
+                                                      formatter: '.formatter.formatInteger'}"
+                            />
                             <ObjectIdentifier
                                 title="{listModel>Grnno}"
                                 text="{listModel>Grndate}"
                             />
                             <ObjectIdentifier title="{listModel>Matent}" />
                             <!-- <ObjectIdentifier title="{listModel>Tcs}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>Tcs', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>Tcs', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                             <!-- <ObjectIdentifier title="{listModel>InvTcs}" /> -->
-                            <ObjectIdentifier
-                                title="{ path: 'listModel>InvTcs', formatter: '.formatter.formatToTwoDecimals' }"
-                            />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>InvTcs', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
                         </cells>
                     </ColumnListItem>
                 </items>

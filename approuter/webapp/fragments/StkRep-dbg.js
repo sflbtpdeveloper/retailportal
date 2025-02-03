@@ -95,9 +95,9 @@ sap.ui.define([
 
             // Create the query parameters to be passed in the AJAX request
             const params = {
-                email: sEmail,
-                bukrs: bukrs,
-                spart: spart
+                email: sEmail
+                // bukrs: bukrs,
+                // spart: spart
             };
             var oModel = this.getOwnerComponent().getModel("mainService");
             oModel.refreshMetadata();

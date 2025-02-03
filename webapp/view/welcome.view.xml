@@ -18,8 +18,8 @@
             <Image
                 id="_IDGenImage4"
                 src="/images/sfllogoonly.png"
-                width="2.5rem"
-                height="3.5rem"
+                width="2rem"
+                height="3rem"
                 decorative="false"
                 press="onLogoPressed"
                 tooltip="SAP Logo"
@@ -117,51 +117,76 @@
                 </layoutData>
             </Avatar>
         </tnt:ToolHeader>
-
         <content>
+            <VBox id="videoContainer" />
             <VBox
-                justifyContent="Center"
-                alignItems="Center"
-                height="60%"
-                width="100%"
-                class="tileContainer raisedTileContainer"                
+                id="tileWrapper"
+                class="tileOverlay"
             >
-                <HBox
-                    justifyContent="Center"
-                    alignItems="Center"
-                >
-                    <GenericTile
-                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"                        
-                        frameType="TwoByHalf"
-                        press="onSFLPress"
-                        visible="{tileVisibilityModel>/showSflTile}"
-                        header="SFL - Sundram Fasteners Limited"
-                    >                      
-                    </GenericTile>
-
-                    <GenericTile
-                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"                        
-                        frameType="TwoByHalf"
-                        press="onTPLPress"
-                        visible="{tileVisibilityModel>/showTplTile}"
-                        header="TPL - TVS Sundram Fasteners Limited"
-                    >                      
-                    </GenericTile>
-                </HBox>
-                <!-- Spacer for 3-line height -->
                 <VBox
-                    height="1rem"
-                    width="100%"
-                />
-
-                <HBox
-                    id="tileContainer"
-                    alignItems="Center"
                     justifyContent="Center"
+                    alignItems="Center"
+                    height="60%"
                     width="100%"
-                    wrap="Wrap"
-                />
+                    class="tileContainer raisedTileContainer"
+                >
+                    <HBox
+                        justifyContent="Center"
+                        alignItems="Center"
+                    >
+                        <GenericTile
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
+                            frameType="TwoByHalf"
+                            press="onSFLPress"
+                            visible="{tileVisibilityModel>/showSflTile}"
+                            header="SFL - Sundram Fasteners Limited"
+                        />
+
+                        <GenericTile
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
+                            frameType="TwoByHalf"
+                            press="onTPLPress"
+                            visible="{tileVisibilityModel>/showTplTile}"
+                            header="TPL - TVS Sundram Fasteners Limited"
+                        />
+                    </HBox>
+                    <!-- Spacer for 3-line height -->
+                    <VBox
+                        height="1rem"
+                        width="100%"
+                    />
+
+                    <HBox
+                        id="tileContainer"
+                        alignItems="Center"
+                        justifyContent="Center"
+                        width="100%"
+                        wrap="Wrap"
+                    />
+                </VBox>
             </VBox>
         </content>
+        <footer>
+            <Toolbar>
+                <HBox class="newsTickerBox">
+                    <Text
+                        id="idNewsText1"
+                        text="Registered Office : SUNDRAM FASTENERS LIMITED,
+                              98 - A, VII Floor,
+                              Dr. Radhakrishnan Salai,
+                              Mylapore,Chennai - 600 004, India.,
+                              Phone: +91 44 28478500,
+                              E - mail: hq@corp.sfl.co.in"
+                        class="newsText"
+                    />
+                </HBox>
+
+                <ToolbarSpacer />
+                <core:Icon
+                    src="sap-icon://call"
+                    size="1rem"
+                />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>
