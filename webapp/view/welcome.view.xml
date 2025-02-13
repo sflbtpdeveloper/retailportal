@@ -15,22 +15,28 @@
         class="myWelcomeBackground"
     >
         <tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls">
-            <Image
-                id="_IDGenImage4"
-                src="/images/sfllogoonly.png"
-                width="2rem"
-                height="3rem"
-                decorative="false"
-                press="onLogoPressed"
-                tooltip="SAP Logo"
+            <HBox
+                justifyContent="Start"
+                width="auto"
             >
-                <layoutData>
-                    <OverflowToolbarLayoutData
-                        id="_IDGenOverflowToolbarLayoutData"
-                        priority="NeverOverflow"
-                    />
-                </layoutData>
-            </Image>
+                <Image
+                    id="_IDGenImage4"
+                    src="/images/sfllogoonly.png"
+                    width="2.5rem"
+                    height="3.5rem"
+                    decorative="false"
+                    press="onLogoPressed"
+                    tooltip="SAP Logo"
+                    class="welcomeLogo"
+                >
+                    <layoutData>
+                        <OverflowToolbarLayoutData
+                            id="_IDGenOverflowToolbarLayoutData"
+                            priority="NeverOverflow"
+                        />
+                    </layoutData>
+                </Image>
+            </HBox>
             <Title
                 id="_IDGenTitle3"
                 text="SUNDRAM FASTENERS LIMITED"
@@ -66,10 +72,11 @@
 
             <!-- Spacer to balance the layout -->
             <ToolbarSpacer />
+            <!-- <HBox width="100px"></HBox> -->
 
             <ToolbarSpacer id="_IDGenToolbarSpacer" />
             <HBox>
-                <Link
+                <!-- <Link
                     text="About Us"
                     press="onAboutUsPress"
                     class="customLink"
@@ -91,9 +98,19 @@
                     text="Contacts"
                     press="onContactsPress"
                     class="customLink"
-                />
+                /> -->
             </HBox>
-
+            <HBox
+                justifyContent="End"
+                width="auto"
+            >
+                <Link
+                    id="idLName"
+                    text="{userModel>/email}"
+                    textAlign="Right"
+                    class="boldtext"
+                />
+            </HBox>            
             <Avatar
                 id="_IDGenAvatar"
                 src="sap-icon://customer"
@@ -117,76 +134,73 @@
                 </layoutData>
             </Avatar>
         </tnt:ToolHeader>
+
         <content>
-            <VBox id="videoContainer" />
+            <!-- <VBox class="headerImageContainer">
+                <Image
+                    id="headerImage"
+                    src="/images/sundram_fasteners_cover.jpg"
+                    width="100%"
+                    height="auto"
+                    class="headerImage"
+                    decorative="false"
+                />
+            </VBox> -->
+
             <VBox
-                id="tileWrapper"
-                class="tileOverlay"
+                justifyContent="Center"
+                alignItems="Center"
+                height="60%"
+                width="100%"
+                class="tileContainer raisedTileContainer"
             >
-                <VBox
+                <HBox
                     justifyContent="Center"
                     alignItems="Center"
-                    height="60%"
-                    width="100%"
-                    class="tileContainer raisedTileContainer"
                 >
-                    <HBox
-                        justifyContent="Center"
-                        alignItems="Center"
-                    >
-                        <GenericTile
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
-                            frameType="TwoByHalf"
-                            press="onSFLPress"
-                            visible="{tileVisibilityModel>/showSflTile}"
-                            header="SFL - Sundram Fasteners Limited"
-                        />
-
-                        <GenericTile
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
-                            frameType="TwoByHalf"
-                            press="onTPLPress"
-                            visible="{tileVisibilityModel>/showTplTile}"
-                            header="TPL - TVS Sundram Fasteners Limited"
-                        />
-                    </HBox>
-                    <!-- Spacer for 3-line height -->
-                    <VBox
-                        height="1rem"
-                        width="100%"
+                    <GenericTile
+                        id="sflTile"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
+                        frameType="TwoByHalf"
+                        press="onSFLPress"
+                        visible="{tileVisibilityModel>/showSflTile}"
+                        header="Sundram Fasteners Limited (SFL)"
                     />
 
-                    <HBox
-                        id="tileContainer"
-                        alignItems="Center"
-                        justifyContent="Center"
-                        width="100%"
-                        wrap="Wrap"
-                    />
-                </VBox>
-            </VBox>
-        </content>
-        <footer>
-            <Toolbar>
-                <HBox class="newsTickerBox">
-                    <Text
-                        id="idNewsText1"
-                        text="Registered Office : SUNDRAM FASTENERS LIMITED,
-                              98 - A, VII Floor,
-                              Dr. Radhakrishnan Salai,
-                              Mylapore,Chennai - 600 004, India.,
-                              Phone: +91 44 28478500,
-                              E - mail: hq@corp.sfl.co.in"
-                        class="newsText"
+                    <GenericTile
+                        id="tplTile"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop transparentTile"
+                        frameType="TwoByHalf"
+                        press="onTPLPress"
+                        visible="{tileVisibilityModel>/showTplTile}"
+                        header="TVS Sundram Fasteners Limited (TPL)"
                     />
                 </HBox>
-
-                <ToolbarSpacer />
-                <core:Icon
-                    src="sap-icon://call"
-                    size="1rem"
+                <!-- Spacer for 3-line height -->
+                <VBox
+                    height="1rem"
+                    width="100%"
                 />
-            </Toolbar>
-        </footer>
+
+                <HBox
+                    id="tileContainer"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    width="100%"
+                    wrap="Wrap"
+                />
+            </VBox>
+        </content>
+
+        <!-- <VBox class="footerImageContainer">
+            <Image
+                id="footerImage"
+                src="/images/sundram_fasteners_cover.jpg"
+                width="100%"
+                height="auto"
+                class="footerImage"
+                decorative="false"
+            />
+        </VBox> -->
     </Page>
 </mvc:View>

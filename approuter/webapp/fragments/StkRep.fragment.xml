@@ -31,13 +31,13 @@
         <Toolbar class="customToolbar">
             <SearchField
                 width="17.5rem"
-                placeholder="Filter by Plant"
+                placeholder="Plant"
                 liveChange="onWerks"
             />
 
             <SearchField
                 width="17.5rem"
-                placeholder="Filter by Material"
+                placeholder="Material Number"
                 liveChange="onMatnr"
             />
             <ToolbarSpacer />

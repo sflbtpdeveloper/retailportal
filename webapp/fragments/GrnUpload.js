@@ -119,7 +119,7 @@ sap.ui.define([
                     "SHIP TO", "PO REF", "PO DATE(DD.MM.YYYY)", "PARTNO", "DELY QTY"
                 ];
                 var grnUploadHeaders = [
-                    "Customer Code", "Invoice No", "GRN No", "GRN Date"
+                    "Invoice No", "GRN No", "GRN Date"
                 ];
                 var stockUploadHeaders = [
                     "Plant", "Material", "Quantity", "Remarks"
@@ -160,7 +160,6 @@ sap.ui.define([
 
                 // Define the field names based on your entity
                 var fieldNames = [
-                    "Customer",
                     "Invno",
                     "Grnno",
                     "Grndate",

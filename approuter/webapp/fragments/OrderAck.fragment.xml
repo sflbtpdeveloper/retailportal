@@ -63,13 +63,13 @@
             <SearchField
                 id="id_bstkd"
                 width="15%"
-                placeholder="PO"
+                placeholder="PO Number"
                 liveChange="onPO"
             />
             <SearchField
                 id="id_bstdk"
                 width="15%"
-                placeholder="Date"
+                placeholder="Po Date"
                 liveChange="onDAT"
             />
         </Toolbar>
@@ -77,13 +77,13 @@
             <SearchField
                 id="id_ordno"
                 width="15%"
-                placeholder="Order"
+                placeholder="Order Number"
                 liveChange="onORD"
             />
             <SearchField
                 id="id_part"
                 width="20%"
-                placeholder="Part"
+                placeholder="Part Number"
                 liveChange="onPart"
             />
             <ToolbarSpacer />
@@ -120,7 +120,7 @@
                 class="customTableHeader"
             >
                 <columns>
-                    <Column>
+                    <!-- <Column>
                         <Label text="Sales Office" />
                     </Column>
                     <Column>
@@ -137,6 +137,9 @@
                     </Column>
                     <Column>
                         <Label text="Region Desc" />
+                    </Column> -->
+                    <Column>
+                        <Label text="Plant" />
                     </Column>
                     <Column>
                         <Label text="Sold-to-Party" />
@@ -174,9 +177,7 @@
                             width="100px"
                         />
                     </Column>
-                    <Column>
-                        <Label text="Plant" />
-                    </Column>
+
                     <Column>
                         <Label
                             text="Sales Value"
@@ -194,14 +195,16 @@
                 <items>
                     <ColumnListItem type="Inactive">
                         <cells>
-                            <ObjectIdentifier title="{listModel>Vbkur}" />
+                            <!-- <ObjectIdentifier title="{listModel>Vbkur}" />
                             <ObjectIdentifier title="{listModel>Vbkurt}" />
 
                             <ObjectIdentifier title="{listModel>Vkgrp}" />
                             <ObjectIdentifier title="{listModel>Vkgrpt}" />
 
                             <ObjectIdentifier title="{listModel>Regio}" />
-                            <ObjectIdentifier title="{listModel>Regiot}" />
+                            <ObjectIdentifier title="{listModel>Regiot}" /> -->
+
+                            <ObjectIdentifier title="{listModel>Werks}" />
 
                             <ObjectIdentifier title="{listModel>Kunnr}" />
                             <ObjectIdentifier title="{listModel>Name1}" />
@@ -238,7 +241,7 @@
                                 title="{parts: [{path: 'listModel>Kwmeng'}], 
                                                       formatter: '.formatter.formatInteger'}"
                             />
-                            <ObjectIdentifier title="{listModel>Werks}" />
+
                             <!-- <ObjectIdentifier title="{listModel>Kzwi1}" /> -->
                             <HBox justifyContent="End">
                                 <Text

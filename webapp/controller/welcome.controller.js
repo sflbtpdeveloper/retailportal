@@ -2,8 +2,9 @@ sap.ui.define([
   'zretail_sfl/controller/BaseController',
   "sap/ui/core/Fragment",
   'sap/m/MessageBox',
+  'sap/m/MessageToast',
   "sap/ui/core/HTML"
-], function (BaseController, Fragment, MessageBox, HTML) {
+], function (BaseController, Fragment, MessageBox,MessageToast, HTML) {
   'use strict';
   return BaseController.extend("zretail_sfl.controller.welcome", {
 
@@ -11,7 +12,19 @@ sap.ui.define([
     selectedTplTile: false,
 
     onInit: async function () {
-     
+
+      var oView = this.getView();
+      var oSflTile = oView.byId("sflTile");
+      var oTplTile = oView.byId("tplTile");
+
+      // Remove selection from tiles
+      if (oSflTile) {
+        oSflTile.removeStyleClass("selectedTile");
+      }
+      if (oTplTile) {
+        oTplTile.removeStyleClass("selectedTile");
+      }
+
       this.oRouter = this.getOwnerComponent().getRouter();
       this.oRouter.getRoute("RouteView1").attachPatternMatched(this._onObjectMatched, this);
 
@@ -186,26 +199,27 @@ sap.ui.define([
       });
 
       // Add video background dynamically after fetching data
-      this._addVideoBackground();
+      // this._addVideoBackground();
 
     },
-    _addVideoBackground: function () {
-      // Add the video element dynamically
-      const oContainer = this.getView().byId("videoContainer");
-      oContainer.setHeight("100vh");  // Ensure the container height is set
-      debugger;
-      // HTML content for the video    
-            var oHtml = new sap.ui.core.HTML({ 
-              content: '<video autoplay muted loop id="myVideo">' +
-                       '<source src="images/welcome.mp4" type="video/mp4">' +
-                       'Your browser does not support the video tag.' +
-                       '</video>'
-          });            
+    // _addVideoBackground: function () {
+    //   // Add the video element dynamically
+    //   const oContainer = this.getView().byId("videoContainer");
+    //   oContainer.setHeight("100vh");  // Ensure the container height is set
+    //   debugger;
+    //   // HTML content for the video    
+    //         var oHtml = new sap.ui.core.HTML({ 
+    //           content: '<video autoplay muted loop id="myVideo">' +
+    //                    '<source src="images/Welcome.gif" type="video/mp4">' +
+    //                    'Your browser does not support the video tag.' +
+    //                    '</video>'
+    //       });            
 
-      // Add the video element to the container
-      oContainer.addItem(oHtml);
-      oContainer.addStyleClass("bgVideo");
-    },
+    //   // Add the video element to the container
+    //   oContainer.addItem(oHtml);
+    //   oContainer.addStyleClass("bgVideo");
+    // },
+
     onBeforeRendering: function () {
       if (this.oRouter) {
         // Detach PatternMatched before re-rendering
@@ -218,11 +232,23 @@ sap.ui.define([
     },
     _onObjectMatched: function () {
       debugger;
+      var oView = this.getView();
+      var oSflTile = oView.byId("sflTile");
+      var oTplTile = oView.byId("tplTile");
+
+      // Remove selection from tiles
+      if (oSflTile) {
+        oSflTile.removeStyleClass("selectedTile");
+      }
+      if (oTplTile) {
+        oTplTile.removeStyleClass("selectedTile");
+      }
+
       const tileSelectedModel = this.getOwnerComponent().getModel("tileSelectedModel");
       tileSelectedModel.setProperty("/selectedTplTile", false);
       tileSelectedModel.setProperty("/selectedSflTile", false);
       // Detach the event handler to prevent further calls
-      this.oRouter.getRoute("RouteView1").detachPatternMatched(this._onObjectMatched, this);
+      // this.oRouter.getRoute("RouteView1").detachPatternMatched(this._onObjectMatched, this);
     },
 
     onDivisionSelect: function (selectedDivision) {
@@ -236,6 +262,7 @@ sap.ui.define([
       if (!selectedSflTile && !selectedTplTile) {
         // Show error message if neither button is pressed
         sap.m.MessageBox.error("Please select company first and choose division.");
+        // MessageToast.show("Please select company first and choose division.");
         return; // Exit the function without navigating
       }
       const selectedDivisionModel = this.getView().getModel("selectedDivisionModel");
@@ -252,6 +279,10 @@ sap.ui.define([
       this.oRouter.navTo("operations");
     },
     onSFLPress: function () {
+      var oView = this.getView();
+      var oSflTile = oView.byId("sflTile");
+      var oTplTile = oView.byId("tplTile");
+
       // Update the model with visibility data
       const tileSelectedModel = this.getOwnerComponent().getModel("tileSelectedModel");
       this.selectedSflTile = true;
@@ -265,8 +296,15 @@ sap.ui.define([
       divisionData.selectedTplTile = this.selectedTplTile;
       localStorage.setItem("divisionData", JSON.stringify(divisionData));
 
+      oSflTile.addStyleClass("selectedTile");
+      oTplTile.removeStyleClass("selectedTile");
+
     },
-    onTPLPress: function () {
+    onTPLPress: function (oEvent) {
+      var oView = this.getView();
+      var oSflTile = oView.byId("sflTile");
+      var oTplTile = oView.byId("tplTile");
+
       // Update the model with visibility data
       const tileSelectedModel = this.getOwnerComponent().getModel("tileSelectedModel");
       this.selectedTplTile = true;
@@ -279,6 +317,10 @@ sap.ui.define([
       divisionData.selectedTplTile = this.selectedTplTile;
       divisionData.selectedSflTile = this.selectedSflTile;
       localStorage.setItem("divisionData", JSON.stringify(divisionData));
+
+      // Apply 'selectedTile' class
+      oTplTile.addStyleClass("selectedTile");
+      oSflTile.removeStyleClass("selectedTile");
 
     },
 

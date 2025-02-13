@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+    controllerName="zretail_sfl.controller.TestCert"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+>
+    <VBox
+        alignItems="Center"
+        justifyContent="Start"
+        width="100%"
+    >
+        <HBox
+            width="100%"
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Title
+                    text="Test Certificate"
+                    textAlign="Center"
+                    titleStyle="Auto"
+                    class="sapUiTinyMarginBegin sapUiTinyMarginTop customSubtitle"
+                />
+            </VBox>
+            <HBox width="4rem" />
+        </HBox>
+        <VBox class="sapUiSmallMargin">
+            <Label text="Invoice No" />
+            <Input
+                id="InvNo"
+                change="onInvoiceChange"
+                maxLength="40"
+                width="100%"
+            />
+
+            <Label text="Item No / Quantity / Part Numbers" />
+            <Select
+                id="ItemNo"
+                forceSelection="false"
+                items="{dropModel>/items}"
+                required="true"
+                width="100%"
+                change="onItemNoChange"
+            >
+                <core:Item
+                    key="{dropModel>key}"
+                    text="{dropModel>text}"
+                />
+            </Select>
+
+            <Label text="HT Load No" />
+           <ComboBox
+                id="HtNo"
+                items="{dropHeat>/items}"
+                required="true"
+                width="100%"
+                editable="true"
+            >
+                <core:Item
+                    key="{dropHeat>key}"
+                    text="{dropHeat>text}"
+                />
+          </ComboBox>
+
+            <Button
+                text="Submit"
+                press="onPushButtonPress"
+                width="100%"
+                type="Emphasized"
+            />
+        </VBox>
+    </VBox>
+</core:FragmentDefinition>

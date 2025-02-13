@@ -27,14 +27,14 @@
             "target": "/$1",
             "destination": "node_api",
             "authenticationType": "xsuaa",  
-            "csrfProtection": false                                  
+            "csrfProtection": false                                        
         },        
         {
             "source": "^/sap/(.*)$",
             "target": "/sap/$1",
             "destination": "SFD_HTTPS",
             "authenticationType": "xsuaa",
-            "csrfProtection": false            
+            "csrfProtection": false                     
         },
         {
             "source": "^(.*)$",

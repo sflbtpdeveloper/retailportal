@@ -19,11 +19,12 @@
             <Image
                 id="_IDGenImage4"
                 src="/images/sfllogoonly.png"
-                width="2rem"
-                height="3rem"
+                width="2.5rem"
+                height="3.5rem"
                 decorative="false"
                 press="onLogoPressed"
                 tooltip="SAP Logo"
+                class="welcomeLogo"
             >
                 <layoutData>
                     <OverflowToolbarLayoutData
@@ -34,7 +35,7 @@
             </Image>
             <Title
                 id="_IDGenTitle3"
-                text="Sundram Fasteners Limited"
+                text="SUNDRAM FASTENERS LIMITED"
                 wrapping="false"
                 class="companyHeading"
             >
@@ -68,32 +69,41 @@
             <ToolbarSpacer />
 
             <ToolbarSpacer id="_IDGenToolbarSpacer" />
-            <HBox>
-                <Link
-                    text="About Us"
-                    press="onAboutUsPress"
-                    class="customLink"
-                />
-                <Label text=" | " />
-                <Link
-                    text="News"
-                    press="onNewsPress"
-                    class="customLink"
-                />
-                <Label text=" | " />
-                <Link
-                    text="Events"
-                    press="onEventsPress"
-                    class="customLink"
-                />
-                <Label text=" | " />
-                <Link
-                    text="Contacts"
-                    press="onContactsPress"
-                    class="customLink"
-                />                
-            </HBox>
-
+            <VBox>
+                <HBox>
+                    <Link
+                        text="About Us"
+                        press="onAboutUsPress"
+                        class="customLink"
+                    />
+                    <Label text=" | " />
+                    <Link
+                        text="News"
+                        press="onNewsPress"
+                        class="customLink"
+                    />
+                    <Label text=" | " />
+                    <Link
+                        text="Events"
+                        press="onEventsPress"
+                        class="customLink"
+                    />
+                    <Label text=" | " />
+                    <Link
+                        text="Contacts"
+                        press="onContactsPress"
+                        class="customLink"
+                    />
+                </HBox>
+                <HBox justifyContent="End">
+                    <Link
+                        id="idUName"
+                        text="{userModel>/email}"
+                        textAlign="Right"
+                        class="boldtext"
+                    />
+                </HBox>
+            </VBox>
             <Avatar
                 id="_IDGenAvatar1"
                 src="sap-icon://customer"
@@ -168,39 +178,41 @@
         <customHeader>
             <Bar id="_IDGenBar1">
                 <contentRight>
-                    <HBox>
-                        <Link
-                            text="About Us"
-                            press="onAboutUsPress"
-                            class="customLink"
-                        />
-                        <Label text=" | " />
-                        <Link
-                            text="News"
-                            press="onNewsPress"
-                            class="customLink"
-                        />
-                        <Label text=" | " />
-                        <Link
-                            text="Events"
-                            press="onEventsPress"
-                            class="customLink"
-                        />
-                        <Label text=" | " />
-                        <Link
-                            text="Contacts"
-                            press="onContactsPress"
-                            class="customLink"
-                        />
-                        <Label text=" | " />
-                        <Link
-                            text="Logout"
-                            press="onLogOut"
-                            class="customLink"
-                            icon="sap-icon://log"
-                            tooltip="Sign Out"
-                        />                       
-                    </HBox>
+                    <VBox>
+                        <HBox>
+                            <Link
+                                text="About Us"
+                                press="onAboutUsPress"
+                                class="customLink"
+                            />
+                            <Label text=" | " />
+                            <Link
+                                text="News"
+                                press="onNewsPress"
+                                class="customLink"
+                            />
+                            <Label text=" | " />
+                            <Link
+                                text="Events"
+                                press="onEventsPress"
+                                class="customLink"
+                            />
+                            <Label text=" | " />
+                            <Link
+                                text="Contacts"
+                                press="onContactsPress"
+                                class="customLink"
+                            />
+                            <Label text=" | " />
+                            <Link
+                                text="Logout"
+                                press="onLogOut"
+                                class="customLink"
+                                icon="sap-icon://log"
+                                tooltip="Sign Out"
+                            />
+                        </HBox>
+                    </VBox>
                 </contentRight>
             </Bar>
         </customHeader>
@@ -230,9 +242,7 @@
         </Popover>
 
         <content>
-            <VBox
-                id="fragmentContainer"
-            />
+            <VBox id="fragmentContainer" />
         </content>
     </Page>
 </mvc:View>

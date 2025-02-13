@@ -63,13 +63,13 @@
             <SearchField
                 id="id_bstkd_od"
                 width="15%"
-                placeholder="PO"
+                placeholder="PO Number"
                 liveChange="onPO"
             />
             <SearchField
                 id="id_bstdk_od"
                 width="15%"
-                placeholder="Date"
+                placeholder="PO Date"
                 liveChange="onDAT"
             />
         </Toolbar>
@@ -77,13 +77,13 @@
             <SearchField
                 id="id_ordno_od"
                 width="15%"
-                placeholder="Order"
+                placeholder="Order Number"
                 liveChange="onORD"
             />
             <SearchField
                 id="id_part_od"
                 width="20%"
-                placeholder="Part"
+                placeholder="Part Number"
                 liveChange="onPart"
             />
             <ToolbarSpacer />
@@ -112,30 +112,28 @@
                 class="customTableHeader"
             >
                 <columns>
-                    <Column>
+                    <!-- <Column>
                         <Label text="Sales Office" />
-                    </Column>
-                    <Column>
-                        <Label text="Sales Office Desc" />
-                    </Column>
-                    <Column>
+                    </Column> -->
+
+                    <!-- <Column>
                         <Label text="Sales Group" />
-                    </Column>
-                    <Column>
-                        <Label text="Sales Group Desc" />
-                    </Column>
-                    <Column>
+                    </Column> -->
+
+                    <!-- <Column>
                         <Label text="Region" />
-                    </Column>
+                    </Column> -->
+
                     <Column>
-                        <Label text="Region Desc" />
+                        <Label text="Plant" />
                     </Column>
-                    <Column>
+
+                    <!-- <Column>
                         <Label
                             text="City"
                             width="120px"
                         />
-                    </Column>
+                    </Column> -->
                     <Column>
                         <Label
                             text="Sold To"
@@ -166,31 +164,30 @@
                     <Column>
                         <Label text="Sales Order No/Item/Date" />
                     </Column>
-
-                    <Column>
-                        <Label text="Invoice Number/Date" />
-                    </Column>
-
                     <Column>
                         <Label
-                            text="Sales Value"
-                            width="100px"
-                        />
-                    </Column>
-                    <Column>
-                        <Label text="Plant" />
-                    </Column>
-                    <Column>
-                        <Label
-                            text="Material/Desc"
+                            text="Part Number / Desc"
                             width="250px"
                         />
+                    </Column>
+                    <Column>
+                        <Label text="Invoice Number/Date" />
                     </Column>
                     <Column>
                         <Label
                             text="Quantity"
                             width="100px"
                         />
+                    </Column>
+                    <Column>
+                        <Label
+                            text="Sales Value"
+                            width="100px"
+                        />
+                    </Column>
+
+                    <Column>
+                        <Label text="Invoice Value" />
                     </Column>
                     <Column>
                         <Label
@@ -207,9 +204,7 @@
                     <Column>
                         <Label text="Secondary LR Transporter" />
                     </Column>
-                    <Column>
-                        <Label text="Invoice Value" />
-                    </Column>
+
                     <Column>
                         <Label text="IGST Amount" />
                     </Column>
@@ -228,7 +223,7 @@
                     <Column>
                         <Label text="No. of Packs" />
                     </Column>
-                    <Column>
+                    <!-- <Column>
                         <Label text="GRN No/Date" />
                     </Column>
                     <Column>
@@ -245,21 +240,32 @@
                     </Column>
                     <Column>
                         <Label text="Invoice Value with TCS" />
+                    </Column> -->
+                    <Column>
+                        <Label text="Sales Office" />
+                    </Column>
+                    <Column>
+                        <Label text="Sales Group" />
+                    </Column>
+                    <Column>
+                        <Label text="Region" />
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <ObjectIdentifier title="{listModel>Vbkur}" />
-                            <ObjectIdentifier title="{listModel>Vbkurt}" />
+                            <!-- <ObjectIdentifier title="{listModel>Vbkur}" /> -->
 
-                            <ObjectIdentifier title="{listModel>Vkgrp}" />
-                            <ObjectIdentifier title="{listModel>Vkgrpt}" />
+                            <!-- <ObjectIdentifier title="{listModel>Vkgrp}" /> -->
 
-                            <ObjectIdentifier title="{listModel>Regio}" />
-                            <ObjectIdentifier title="{listModel>Regiot}" />
+                            <!-- <ObjectIdentifier title="{listModel>Regio}" /> -->
 
-                            <ObjectIdentifier title="{listModel>Ort01}" />
+                            <ObjectIdentifier
+                                title="{listModel>Werks}"
+                                text="{listModel>Pname}"
+                            />
+
+                            <!-- <ObjectIdentifier title="{listModel>Ort01}" /> -->
 
                             <ObjectIdentifier title="{listModel>Kunnr}" />
                             <ObjectIdentifier title="{listModel>SoName}" />
@@ -287,9 +293,18 @@
                                 />
                             </VBox>
                             <ObjectIdentifier
+                                title="{listModel>Matnr}"
+                                text="{listModel>Arktx}"
+                                class="boldtext"
+                            />
+                            <ObjectIdentifier
                                 title="{listModel>InvNo}"
                                 text="{listModel>InvDat}"
                                 class="boldtext"
+                            />
+                            <ObjectIdentifier
+                                title="{parts: [{path: 'listModel>Kwmeng'}], 
+                                                      formatter: '.formatter.formatInteger'}"
                             />
                             <!-- <ObjectIdentifier title="{listModel>SalVal}" /> -->
                             <HBox justifyContent="End">
@@ -299,18 +314,16 @@
                                     class="boldtext"
                                 />
                             </HBox>
-                            <ObjectIdentifier title="{listModel>Werks}" 
-                                              text ="{listModel>Pname}"/>
-                            <ObjectIdentifier
-                                title="{listModel>Matnr}"
-                                text="{listModel>Arktx}"
-                                class="boldtext"
-                            />
+                            <HBox justifyContent="End">
+                                <Text
+                                    text="{ path: 'listModel>InvVal', formatter: '.formatter.formatToTwoDecimals' }"
+                                    textAlign="End"
+                                    class="boldtext"
+                                />
+                            </HBox>
+
                             <!-- <ObjectIdentifier title="{listModel>Kwmeng}" /> -->
-                            <ObjectIdentifier
-                                title="{parts: [{path: 'listModel>Kwmeng'}], 
-                                                      formatter: '.formatter.formatInteger'}"
-                            />
+
                             <ObjectIdentifier
                                 title="{listModel>Lrno}"
                                 text="{listModel>Lrdate}"
@@ -322,13 +335,7 @@
                             />
                             <ObjectIdentifier title="{listModel>Stname}" />
                             <!-- <ObjectIdentifier title="{listModel>InvVal}" /> -->
-                            <HBox justifyContent="End">
-                                <Text
-                                    text="{ path: 'listModel>InvVal', formatter: '.formatter.formatToTwoDecimals' }"
-                                    textAlign="End"
-                                    class="boldtext"
-                                />
-                            </HBox>
+
                             <!-- <ObjectIdentifier title="{listModel>Igst}" /> -->
                             <HBox justifyContent="End">
                                 <Text
@@ -359,27 +366,30 @@
                                 title="{parts: [{path: 'listModel>Nop'}], 
                                                       formatter: '.formatter.formatInteger'}"
                             />
-                            <ObjectIdentifier
+                            <!-- <ObjectIdentifier
                                 title="{listModel>Grnno}"
                                 text="{listModel>Grndate}"
                             />
-                            <ObjectIdentifier title="{listModel>Matent}" />
+                            <ObjectIdentifier title="{listModel>Matent}" /> -->
                             <!-- <ObjectIdentifier title="{listModel>Tcs}" /> -->
-                            <HBox justifyContent="End">
+                            <!-- <HBox justifyContent="End">
                                 <Text
                                     text="{ path: 'listModel>Tcs', formatter: '.formatter.formatToTwoDecimals' }"
                                     textAlign="End"
                                     class="boldtext"
                                 />
-                            </HBox>
+                            </HBox> -->
                             <!-- <ObjectIdentifier title="{listModel>InvTcs}" /> -->
-                            <HBox justifyContent="End">
+                            <!-- <HBox justifyContent="End">
                                 <Text
                                     text="{ path: 'listModel>InvTcs', formatter: '.formatter.formatToTwoDecimals' }"
                                     textAlign="End"
                                     class="boldtext"
                                 />
-                            </HBox>
+                            </HBox> -->
+                            <ObjectIdentifier title="{listModel>Vbkurt}" />
+                            <ObjectIdentifier title="{listModel>Vkgrpt}" />
+                            <ObjectIdentifier title="{listModel>Regiot}" />
                         </cells>
                     </ColumnListItem>
                 </items>

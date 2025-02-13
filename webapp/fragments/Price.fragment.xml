@@ -32,7 +32,7 @@
             <SearchField
                 id="sf_Matnr_pr"
                 width="17.5rem"
-                placeholder="Search by Material"
+                placeholder="Material Number"
                 liveChange="onMatnr"
             />
             <ToolbarSpacer />
@@ -71,14 +71,19 @@
                         <Label text="Price" />
                     </Column>
                     <Column>
-                        <Label text="Pricing Unit" />
+                        <Label text="Price / Nos" />
                     </Column>
-                    <Column>
+                    <Column
+                        visible="{= ${viewModel>/spart} === 'FD'}"
+                    >
+                        <Label text="MOQ" />
+                    </Column>
+                    <!-- <Column>
                         <Label text="UoM" />
                     </Column>
                     <Column>
                         <Label text="Currency" />
-                    </Column>
+                    </Column> -->
                 </columns>
                 <items>
                     <ColumnListItem type="Inactive">
@@ -87,8 +92,9 @@
                             <ObjectIdentifier title="{listModel>Maktx}" />
                             <ObjectIdentifier title="{listModel>Kbetr}" />
                             <ObjectIdentifier title="{listModel>Kpein}" />
-                            <ObjectIdentifier title="{listModel>Kmein}" />
-                            <ObjectIdentifier title="{listModel>Konwa}" />
+                            <ObjectIdentifier title="{listModel>MOQ}" />
+                            <!-- <ObjectIdentifier title="{listModel>Kmein}" />
+                            <ObjectIdentifier title="{listModel>Konwa}" /> -->
                         </cells>
                     </ColumnListItem>
                 </items>

@@ -28,8 +28,15 @@ const axios1 = SapCfAxios("SFD_HTTPS");
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-app.use(express.json({ limit: "50mb" })); 
+app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Set request timeout to 10 minutes
+app.use((req, res, next) => {
+  req.setTimeout(600000); // 10 minutes
+  res.setTimeout(600000); // 10 minutes
+  next();
+});
 
 //---------------------------------------------------------------------
 //  fetch data for getting Vendor Details 
@@ -306,8 +313,26 @@ app.get("/Pricelist", async (req, res) => {
 //---------------------------------------------------------------------
 
 app.get("/RetailStklist", async (req, res) => {
+  // const email = req.query.email;
   const email = req.query.email;
+  const spart = req.query.spart;
+  const bukrs = req.query.bukrs;
+
+
+
   try {
+
+    // Construct the $filter parameter
+    let filter = `Email eq '${email}'`;
+    if (bukrs) {
+      filter += ` and Bukrs eq '${bukrs}'`;
+    }
+    if (spart) {
+      filter += ` and Spart eq '${spart}'`;
+    }
+
+    console.log("Constructed $filter:", filter);
+
     const response = await axios1({
       method: "GET",
       url: "/sap/opu/odata/sap/YSD_RETAIL_SO_SRV/YSD_RETAIL_STK_REPSet",
@@ -797,7 +822,7 @@ app.post('/OU_downloadError_grn', (req, res) => {
   console.log("Error data received in Node.js:", errors);
 
   // Define the header row
-  const header = ["Customer Code", "Invoice No", "GRN No", "GRN Date","DESC"];
+  const header = ["Invoice No", "GRN No", "GRN Date", "DESC"];
 
   // Map errors to rows
   const excelData = [header]; // Include header row as the first row
@@ -805,7 +830,7 @@ app.post('/OU_downloadError_grn', (req, res) => {
     if (typeof error === "object" && error !== null) {
       // Add the error fields in the same order as the header
       const row = [
-        error.CUSTOMER || "", // Map to "Customer Code"
+        //error.CUSTOMER || "", // Map to "Customer Code"
         error.INVNO || "",    // Map to "Invoice No"
         error.GRNNO || "",        // Map to "GRN No"
         error.GRNDATE || "",       // Map to "GRN Date"
@@ -837,7 +862,7 @@ app.post('/OU_downloadError_grn', (req, res) => {
         console.error("Error deleting temporary file:", unlinkErr);
       }
     });
-  });  
+  });
 });
 
 
@@ -901,7 +926,7 @@ app.get('/GRN_downloadTemplate', (req, res) => {
   // Define the Excel data
   const data = [
     [
-      "Customer Code", "Invoice No", "GRN No", "GRN Date"
+      "Invoice No", "GRN No", "GRN Date"
     ]
   ];
 
@@ -1046,7 +1071,7 @@ app.post("/SaveOrder", passport.authenticate("JWT", { session: false }), async (
   console.log("SaveOrder req details", req);
   const records = req.body
   const payloadSize = Buffer.byteLength(JSON.stringify(records), 'utf8');
-  console.log(`Payload Size: ${payloadSize} bytes`);  
+  console.log(`Payload Size: ${payloadSize} bytes`);
   console.log("Data being sent to OData service befor get call:", records);
 
 
@@ -1056,7 +1081,7 @@ app.post("/SaveOrder", passport.authenticate("JWT", { session: false }), async (
     headers: {
       'x-csrf-token': 'Fetch',  // Request a new CSRF token      
       "content-type": "application/json",
-      "sap-client": "999",      
+      "sap-client": "999",
       // 'Authorization': `Bearer ${jwtToken}`
     },
     withCredentials: true
@@ -1086,7 +1111,7 @@ app.post("/SaveOrder", passport.authenticate("JWT", { session: false }), async (
       headers: {
         'X-CSRF-Token': csrfToken,
         "content-type": "application/json; charset=UTF-8",
-        "sap-client": "999",        
+        "sap-client": "999",
         'Authorization': `Bearer ${token}`,
         'Cookie': cookies.join('; ')
       },
@@ -1124,11 +1149,11 @@ app.get('/TR_downloadTemplate', (req, res) => {
   // Define the Excel data
   const data = [
     [
-        "Distributor", "Distributor Invoice", "Distributor Branch", "Dealer Name",
-        "Dealer GST", "Dealer City", "Invoice Date", "Material",
-        "Ordered Qty", "List Value by Distributor", "Created On", "Created By"
+      "Distributor", "Distributor Invoice", "Distributor Branch", "Dealer Name",
+      "Dealer GST", "Dealer City", "Invoice Date", "Material",
+      "Ordered Qty", "List Value by Distributor"
     ]
-];
+  ];
   // Create a workbook
   const wb = XLSX.utils.book_new();
 
@@ -1163,10 +1188,10 @@ app.post('/TR_downloadError', (req, res) => {
 
   // Define the header row
   const header = [
-    "DISTRIBUTOR", "DISTRIBUTOR_INVOICE", "DISTRIBUTOR_BRANCH", 
-    "DEALER_NAME", "DEALER_GST", "DEALER_CITY", 
-    "INVOICE_DATE", "MATERIAL", "ORDERED_QTY", 
-    "LIST_VALUE_BY_DISTRIBUTOR", "CREATED_ON", "CREATED_BY"
+    "DISTRIBUTOR", "DISTRIBUTOR_INVOICE", "DISTRIBUTOR_BRANCH",
+    "DEALER_NAME", "DEALER_GST", "DEALER_CITY",
+    "INVOICE_DATE", "MATERIAL", "ORDERED_QTY",
+    "LIST_VALUE_BY_DISTRIBUTOR", "DESC"
   ];
 
   // Map errors to rows
@@ -1176,17 +1201,16 @@ app.post('/TR_downloadError', (req, res) => {
       // Add the error fields in the same order as the header
       const row = [
         error.DISTRIBUTOR || "",
-        error.DISTRIBUTOR_INVOICE || "",
-        error.DISTRIBUTOR_BRANCH || "",
-        error.DEALER_NAME || "",
-        error.DEALER_GST || "",
-        error.DEALER_CITY || "",
-        error.INVOICE_DATE || "",
+        error.DISTRIBUTORINVOICE || "",
+        error.DISTRIBUTORBRANCH || "",
+        error.DEALERNAME || "",
+        error.DEALERGST || "",
+        error.DEALERCITY || "",
+        error.INVOICEDATE || "",
         error.MATERIAL || "",
-        error.ORDERED_QTY || "",
-        error.LIST_VALUE_BY_DISTRIBUTOR || "",
-        error.CREATED_ON || "",
-        error.CREATED_BY || ""
+        error.ORDEREDQTY || "",
+        error.LISTVALUEBYDISTRIBUTOR || "",
+        error.DESC || ""
       ];
       excelData.push(row);
     }
@@ -1225,7 +1249,7 @@ app.post("/S2TUpload", passport.authenticate("JWT", { session: false }), async (
   console.log("S2TUpload req details", req);
   const records = req.body
   const payloadSize = Buffer.byteLength(JSON.stringify(records), 'utf8');
-  console.log(`Payload Size: ${payloadSize} bytes`);  
+  console.log(`Payload Size: ${payloadSize} bytes`);
   console.log("Data being sent to OData service befor get call:", records);
 
 
@@ -1235,7 +1259,7 @@ app.post("/S2TUpload", passport.authenticate("JWT", { session: false }), async (
     headers: {
       'x-csrf-token': 'Fetch',  // Request a new CSRF token      
       "content-type": "application/json",
-      "sap-client": "999",      
+      "sap-client": "999",
       // 'Authorization': `Bearer ${jwtToken}`
     },
     withCredentials: true
@@ -1265,7 +1289,7 @@ app.post("/S2TUpload", passport.authenticate("JWT", { session: false }), async (
       headers: {
         'X-CSRF-Token': csrfToken,
         "content-type": "application/json; charset=UTF-8",
-        "sap-client": "999",        
+        "sap-client": "999",
         'Authorization': `Bearer ${token}`,
         'Cookie': cookies.join('; ')
       },

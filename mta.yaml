@@ -59,12 +59,15 @@ modules:
       - name: retail-xsuaa
       - name: retaildest
       - name: retail-connectivity
-      - name: node_api
+      - name: node_api  
+        properties:
+          timeout: 60000         
+
     parameters:
       disk-quota: 1G
       memory: 1G        
       routes:
-       - route: ${space}.sfl.co.in # Dynamic route based on CF space name
+       - route: ${space}.sfl.co.in # Dynamic route based on CF space name          
 
 resources:
   - name: retaildest
@@ -74,12 +77,16 @@ resources:
       service: destination
       service-name: retail-destination
       service-plan: lite
+      config:
+       timeout: 600000  # 10 minutes      
   - name: retail-connectivity
     type: org.cloudfoundry.managed-service
     description: Connectivity Service
     parameters:
       service: connectivity
       service-plan: lite
+      config:
+        timeout: 600000  # 10 minutes      
   - name: retail-xsuaa
     type: org.cloudfoundry.managed-service
     description: xsuaa Security service

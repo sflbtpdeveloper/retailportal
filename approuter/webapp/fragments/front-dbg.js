@@ -8,12 +8,20 @@ sap.ui.define([
         "use strict";
 
         return BaseController.extend("zretail_sfl.fragments.front", {
-            onInit: function (oFragment) {                
-                // this._startCarouselTimer(oFragment);
-                // this.startCarouselAutoSlide();
-            
+            onInit: function (oFragment) { 
+              
+              if (!this._initialized) {
                 this.startFadeInOut();
                 this.startFadeInOut2();
+                this._initialized = true;
+            }
+
+                // this._startCarouselTimer(oFragment);
+                // this.startCarouselAutoSlide();
+            //11.02.2025
+                // this.startFadeInOut();
+                // this.startFadeInOut2();
+            //11.02.2025
             },                    
             _startCarouselTimer: function (oFragment) {                
                 var sFragmentId = this._sFragmentUniqueId;
@@ -131,7 +139,12 @@ sap.ui.define([
             //     }.bind(this), 3000); // 8 seconds delay
             //   }
             // },
-            startFadeInOut: function (oFragment) {
+            startFadeInOut: function (oFragment) {             
+
+              if (this._fadeInterval) {
+                clearInterval(this._fadeInterval);
+            }
+
               var aImagePaths = [
                   "/images/Black-Nut.jpg",
                   "/images/Bolt.jpg",                  
@@ -150,16 +163,20 @@ sap.ui.define([
               // oWelcomeText.setText(aWelcomeMessages[this._carouselIndex]);
               if (iTotalPages > 1) {
               // Cycle through images
-              setInterval(function () {
-                this._carouselIndex = (this._carouselIndex + 1) % iTotalPages;  
+              this._fadeInterval = setInterval(function () {
+                this._carouselIndex = (this._carouselIndex + 1) % iTotalPages;                                 
                 const oNextPage = aImagePaths[this._carouselIndex];                 
                 if (oNextPage) {              
                   oImage.setSrc(oNextPage);
-                }
+                }                
               }.bind(this), 3000); // 8 seconds per image
             }
           },
           startFadeInOut2: function (oFragment) {
+            if (this._fadeInterval2) {
+              clearInterval(this._fadeInterval2);
+          }
+
             var aImagePaths2 = [
                 "/images/csr1.jpg",
                 "/images/csr6.jpg",
@@ -179,7 +196,7 @@ sap.ui.define([
             // oWelcomeText.setText(aWelcomeMessages[this._carouselIndex]);
             if (iTotalPages2 > 1) {
             // Cycle through images
-            setInterval(function () {
+            this._fadeInterval2 = setInterval(function () {
               this._carouselIndex2 = (this._carouselIndex2 + 1) % iTotalPages2;  
               const oNextPage2 = aImagePaths2[this._carouselIndex2];                 
               if (oNextPage2) {              
@@ -187,9 +204,6 @@ sap.ui.define([
               }
             }.bind(this), 3000); // 8 seconds per image
           }
-        }                                      
-              
-              
-       
+        }                                                                         
         });
     });

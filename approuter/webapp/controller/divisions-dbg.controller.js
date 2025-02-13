@@ -648,8 +648,8 @@ sap.ui.define([
         sControllerName = "zretail_sfl.fragments.StkUpload";
       }
       else if (selectedRecord === 'Test Certificate') {
-        sFragmentName = "zretail_sfl.fragments.StkUpload";
-        sControllerName = "zretail_sfl.fragments.StkUpload";
+        sFragmentName = "zretail_sfl.fragments.TestCert";
+        sControllerName = "zretail_sfl.fragments.TestCert";
       }
       else if (selectedRecord === 'SFL Stock Information') {
         sFragmentName = "zretail_sfl.fragments.StkRep";
@@ -703,6 +703,7 @@ sap.ui.define([
     },
     
     loadFragment: function (sFragmentName, sControllerName) {
+      debugger;
       var oView = this.getView();
       var oContainer = oView.byId("fragmentContainer");
 
@@ -778,7 +779,8 @@ sap.ui.define([
             "zretail_sfl.fragments.OrderPen",
             "zretail_sfl.fragments.OrderDes",
             "zretail_sfl.fragments.StkRep",
-            "zretail_sfl.fragments.Price"
+            "zretail_sfl.fragments.Price",
+            "zretail_sfl.fragments.TestCert"
           ];
           if (allowedFragments.includes(sFragmentName)) {
             // Call the onFragmentLoaded method of the controller

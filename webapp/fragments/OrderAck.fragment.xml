@@ -63,13 +63,13 @@
             <SearchField
                 id="id_bstkd"
                 width="15%"
-                placeholder="PO"
+                placeholder="PO Number"
                 liveChange="onPO"
             />
             <SearchField
                 id="id_bstdk"
                 width="15%"
-                placeholder="Date"
+                placeholder="Po Date"
                 liveChange="onDAT"
             />
         </Toolbar>
@@ -77,13 +77,13 @@
             <SearchField
                 id="id_ordno"
                 width="15%"
-                placeholder="Order"
+                placeholder="Order Number"
                 liveChange="onORD"
             />
             <SearchField
                 id="id_part"
                 width="20%"
-                placeholder="Part"
+                placeholder="Part Number"
                 liveChange="onPart"
             />
             <ToolbarSpacer />

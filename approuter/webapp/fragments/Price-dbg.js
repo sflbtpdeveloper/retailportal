@@ -16,6 +16,13 @@ sap.ui.define([
         },
         onFragmentLoaded: function (oFragment) {
             debugger;
+            //04022025
+            const divisionData = JSON.parse(localStorage.getItem("divisionData")) || {};
+            let spart = divisionData.selectedDivision || null;
+
+            let oViewModel = new sap.ui.model.json.JSONModel({ spart: spart });
+            this.getView().setModel(oViewModel, "viewModel");
+            //04022025
             this.oRouter = this.getOwnerComponent().getRouter();
             this.oRouter.getRoute("operations").attachPatternMatched(this._onObjectMatched, this);
             this._localModel = this.getOwnerComponent().getModel("mainService");
@@ -97,6 +104,15 @@ sap.ui.define([
                 bukrs = "6400";
             }
 
+            //04022025
+            // Set spart in a view model
+            let oViewModel = new sap.ui.model.json.JSONModel({
+                spart: spart
+            });
+
+            this.getView().setModel(oViewModel, "viewModel");
+            //04022025
+
             // Create the query parameters to be passed in the AJAX request
             const params = {
                 email: sEmail,
@@ -143,7 +159,7 @@ sap.ui.define([
                 var oJsonModel = new sap.ui.model.json.JSONModel();
                 oJsonModel.setData([]); // Set an empty array to indicate no data
                 that.getView().setModel(oJsonModel, "listModel");
-                                
+
                 console.error("Error fetching Price List:", oErr);
                 // If the error response contains a message, display it in the MessageBox
                 const errorMessage = oErr.responseJSON?.error?.innererror?.errordetails?.[0]?.message || "Unknown error occurred";

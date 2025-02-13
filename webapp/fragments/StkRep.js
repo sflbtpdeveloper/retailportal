@@ -95,9 +95,9 @@ sap.ui.define([
 
             // Create the query parameters to be passed in the AJAX request
             const params = {
-                email: sEmail
-                // bukrs: bukrs,
-                // spart: spart
+                email: sEmail,
+                bukrs: bukrs,
+                spart: spart
             };
             var oModel = this.getOwnerComponent().getModel("mainService");
             oModel.refreshMetadata();
@@ -118,7 +118,7 @@ sap.ui.define([
                     method: "GET",              // Use GET since you're retrieving data         
                     contentType: "application/json",
                     // data: { email: sEmail }   // Send the email as a query parameter
-                    data: params
+                    data: params 
                 });
                 // Success handling
                 sap.ui.core.BusyIndicator.hide();  // Hide the busy indicator on success
